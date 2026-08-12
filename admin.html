@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
@@ -29,11 +28,9 @@ header{
         #075da8,
         #5ed5ff
     );
-
     color:white;
     padding:25px;
     text-align:center;
-
     box-shadow:0 5px 20px #0002;
 }
 
@@ -57,11 +54,8 @@ header p{
     border-radius:18px;
     padding:25px;
     margin-bottom:25px;
-
     border:1px solid #d8edff;
-
-    box-shadow:
-        0 8px 25px #0878c522;
+    box-shadow:0 8px 25px #0878c522;
 }
 
 h2{
@@ -107,6 +101,12 @@ button:hover{
     transform:translateY(-2px);
 }
 
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
 .success{
     background:#08a66a;
 }
@@ -123,10 +123,6 @@ button:hover{
     background:#475569;
 }
 
-.blue{
-    background:#0878d1;
-}
-
 .topbar{
     display:flex;
     justify-content:space-between;
@@ -137,13 +133,10 @@ button:hover{
 
 .product-grid{
     display:grid;
-
-    grid-template-columns:
-    repeat(
+    grid-template-columns:repeat(
         auto-fit,
         minmax(270px,1fr)
     );
-
     gap:20px;
 }
 
@@ -158,6 +151,7 @@ button:hover{
     width:100%;
     height:190px;
     object-fit:cover;
+    background:#e2e8f0;
 }
 
 .product-body{
@@ -340,8 +334,8 @@ button:hover{
 .preview{
     display:none;
     margin-top:10px;
-    max-width:250px;
-    max-height:180px;
+    max-width:300px;
+    max-height:200px;
     border-radius:10px;
 }
 
@@ -351,21 +345,22 @@ button:hover{
     font-size:13px;
 }
 
-.file-info{
-    margin-top:8px;
-    padding:10px;
-    border-radius:8px;
+.info{
+    margin-top:10px;
+    padding:12px;
+    border-radius:10px;
     background:#e0f2fe;
     color:#075da8;
     font-size:13px;
+    line-height:1.6;
 }
 
 .progress-box{
     display:none;
-    margin-top:15px;
+    margin:15px 0;
 }
 
-.progress-bar-bg{
+.progress-bg{
     width:100%;
     height:14px;
     background:#e2e8f0;
@@ -373,7 +368,7 @@ button:hover{
     overflow:hidden;
 }
 
-.progress-bar{
+.progress{
     width:0%;
     height:100%;
     background:#0878d1;
@@ -381,18 +376,9 @@ button:hover{
 }
 
 .progress-text{
-    margin-top:6px;
+    margin-top:7px;
     font-size:13px;
     color:#475569;
-}
-
-.video-info{
-    margin-top:10px;
-    padding:10px;
-    border-radius:8px;
-    background:#f0fdf4;
-    color:#166534;
-    font-size:13px;
 }
 
 footer{
@@ -421,7 +407,6 @@ footer{
 
 </head>
 
-
 <body>
 
 
@@ -440,6 +425,10 @@ footer{
 
 <div class="container">
 
+
+<!-- =====================================================
+ADMIN
+===================================================== -->
 
 <div class="card">
 
@@ -504,7 +493,7 @@ FORM PRODUK
         <input
             type="text"
             id="productName"
-            placeholder="Contoh: Smartphone Galaxy Ultra"
+            placeholder="Contoh: iPhone 15 Pro"
             required
         >
 
@@ -571,9 +560,13 @@ FORM PRODUK
                 class="preview"
             >
 
-            <div class="file-info">
+            <div class="info">
 
-                Format foto:
+                📷 Foto juga disimpan di IndexedDB.
+
+                <br>
+
+                Format:
                 JPG, JPEG, PNG, WEBP
 
             </div>
@@ -606,14 +599,18 @@ FORM PRODUK
                 controls>
             </video>
 
-            <div class="video-info">
+            <div class="info">
 
-                📦 Maksimal ukuran video:
+                🎬 Maksimal video:
                 <b>500 MB</b>
 
                 <br>
 
-                🎥 Disarankan MP4 / WebM
+                💾 Video tidak disimpan sebagai Base64.
+
+                <br>
+
+                📦 Video disimpan langsung di IndexedDB.
 
             </div>
 
@@ -626,11 +623,11 @@ FORM PRODUK
             id="progressBox"
             class="progress-box">
 
-            <div class="progress-bar-bg">
+            <div class="progress-bg">
 
                 <div
-                    id="progressBar"
-                    class="progress-bar">
+                    id="progress"
+                    class="progress">
                 </div>
 
             </div>
@@ -639,7 +636,7 @@ FORM PRODUK
                 id="progressText"
                 class="progress-text">
 
-                Menyiapkan file...
+                Menyimpan...
 
             </div>
 
@@ -720,71 +717,23 @@ PESANAN
 
 
 /* =====================================================
-CEK ADMIN
+INDEXED DB
 ===================================================== */
 
-if(
-
-    localStorage.getItem("loggedUser") !== "admin"
-
-    &&
-
-    localStorage.getItem("loggedRole") !== "admin"
-
-){
-
-    /*
-    Jika ingin mengaktifkan proteksi login,
-    hapus tanda komentar pada bagian ini.
-
-    alert("Akses ditolak!");
-
-    location.href="index.html";
-    */
-
-}
-
-
-/* =====================================================
-STORAGE
-===================================================== */
-
-if(
-    !localStorage.getItem("products")
-){
-
-    localStorage.setItem(
-        "products",
-        JSON.stringify([])
-    );
-
-}
-
-
-if(
-    !localStorage.getItem("orders")
-){
-
-    localStorage.setItem(
-        "orders",
-        JSON.stringify([])
-    );
-
-}
-
-
-/* =====================================================
-DATABASE INDEXEDDB
-===================================================== */
-
-const DB_NAME = "GadgetStoreDB";
+const DB_NAME =
+    "GadgetStoreDatabase";
 
 const DB_VERSION = 1;
 
-const VIDEO_STORE = "videos";
+const STORE =
+    "productFiles";
 
-let db;
+let database = null;
 
+
+/* =====================================================
+BUKA DATABASE
+===================================================== */
 
 function openDatabase(){
 
@@ -801,18 +750,18 @@ function openDatabase(){
             request.onupgradeneeded =
                 function(event){
 
-                    const database =
+                    const db =
                         event.target.result;
 
 
                     if(
-                        !database.objectStoreNames.contains(
-                            VIDEO_STORE
+                        !db.objectStoreNames.contains(
+                            STORE
                         )
                     ){
 
-                        database.createObjectStore(
-                            VIDEO_STORE,
+                        db.createObjectStore(
+                            STORE,
                             {
                                 keyPath:"id"
                             }
@@ -826,10 +775,12 @@ function openDatabase(){
             request.onsuccess =
                 function(event){
 
-                    db =
+                    database =
                         event.target.result;
 
-                    resolve(db);
+                    resolve(
+                        database
+                    );
 
                 };
 
@@ -850,10 +801,10 @@ function openDatabase(){
 
 
 /* =====================================================
-SIMPAN VIDEO KE INDEXEDDB
+SIMPAN FILE
 ===================================================== */
 
-function saveVideoToDB(
+function saveFile(
     id,
     file
 ){
@@ -862,15 +813,15 @@ function saveVideoToDB(
         (resolve,reject)=>{
 
             const transaction =
-                db.transaction(
-                    VIDEO_STORE,
+                database.transaction(
+                    STORE,
                     "readwrite"
                 );
 
 
             const store =
                 transaction.objectStore(
-                    VIDEO_STORE
+                    STORE
                 );
 
 
@@ -914,24 +865,24 @@ function saveVideoToDB(
 
 
 /* =====================================================
-AMBIL VIDEO
+AMBIL FILE
 ===================================================== */
 
-function getVideoFromDB(id){
+function getFile(id){
 
     return new Promise(
         (resolve,reject)=>{
 
             const transaction =
-                db.transaction(
-                    VIDEO_STORE,
+                database.transaction(
+                    STORE,
                     "readonly"
                 );
 
 
             const store =
                 transaction.objectStore(
-                    VIDEO_STORE
+                    STORE
                 );
 
 
@@ -965,24 +916,24 @@ function getVideoFromDB(id){
 
 
 /* =====================================================
-HAPUS VIDEO
+HAPUS FILE
 ===================================================== */
 
-function deleteVideoFromDB(id){
+function removeFile(id){
 
     return new Promise(
         (resolve,reject)=>{
 
             const transaction =
-                db.transaction(
-                    VIDEO_STORE,
+                database.transaction(
+                    STORE,
                     "readwrite"
                 );
 
 
             const store =
                 transaction.objectStore(
-                    VIDEO_STORE
+                    STORE
                 );
 
 
@@ -1014,7 +965,7 @@ function deleteVideoFromDB(id){
 
 
 /* =====================================================
-FORMAT RUPIAH
+RUPIAH
 ===================================================== */
 
 function rupiah(number){
@@ -1035,47 +986,126 @@ function rupiah(number){
 FORMAT FILE
 ===================================================== */
 
-function formatFileSize(bytes){
+function fileSize(size){
 
-    if(bytes < 1024){
+    if(
+        size <
+        1024
+    ){
 
-        return bytes + " B";
+        return size + " B";
 
     }
 
 
-    if(bytes < 1024 * 1024){
+    if(
+        size <
+        1024 * 1024
+    ){
 
         return (
-            bytes / 1024
+            size /
+            1024
         ).toFixed(2)
         + " KB";
 
     }
 
 
-    if(bytes < 1024 * 1024 * 1024){
-
-        return (
-            bytes /
-            (1024 * 1024)
-        ).toFixed(2)
-        + " MB";
-
-    }
-
-
     return (
-        bytes /
-        (1024 * 1024 * 1024)
+        size /
+        (1024 * 1024)
     ).toFixed(2)
-    + " GB";
+    + " MB";
 
 }
 
 
 /* =====================================================
-EDIT ID
+ESCAPE HTML
+===================================================== */
+
+function safe(text){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+BASE64 HANYA UNTUK DATA KECIL
+===================================================== */
+
+function imageToBase64(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(){
+
+                    resolve(
+                        reader.result
+                    );
+
+                };
+
+
+            reader.onerror =
+                function(){
+
+                    reject(
+                        reader.error
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+ID FILE
+===================================================== */
+
+function createFileId(type){
+
+    return (
+        type +
+        "_" +
+        Date.now() +
+        "_" +
+        Math.random()
+        .toString(36)
+        .substring(2)
+    );
+
+}
+
+
+/* =====================================================
+EDITING
 ===================================================== */
 
 let editingId = null;
@@ -1103,37 +1133,34 @@ document
 
 
         document
-        .getElementById("imageName")
+        .getElementById(
+            "imageName"
+        )
         .textContent =
             file.name +
             " (" +
-            formatFileSize(file.size) +
+            fileSize(
+                file.size
+            ) +
             ")";
 
 
         const preview =
             document
-            .getElementById("imagePreview");
-
-
-        if(
-            preview.dataset.url
-        ){
-
-            URL.revokeObjectURL(
-                preview.dataset.url
+            .getElementById(
+                "imagePreview"
             );
-
-        }
 
 
         const url =
-            URL.createObjectURL(file);
+            URL.createObjectURL(
+                file
+            );
 
 
-        preview.src = url;
+        preview.src =
+            url;
 
-        preview.dataset.url = url;
 
         preview.style.display =
             "block";
@@ -1163,38 +1190,28 @@ document
         }
 
 
-        const MAX_VIDEO_SIZE =
-            500 * 1024 * 1024;
+        const MAX =
+            500 *
+            1024 *
+            1024;
 
 
         if(
             file.size >
-            MAX_VIDEO_SIZE
+            MAX
         ){
 
             alert(
                 "Video terlalu besar!\n\n" +
-
-                "Ukuran video: " +
-                formatFileSize(file.size) +
-
-                "\n\n" +
-
+                "Ukuran: " +
+                fileSize(file.size) +
+                "\n" +
                 "Maksimal: 500 MB"
             );
 
 
-            this.value = "";
-
-
-            document
-            .getElementById("videoName")
-            .textContent = "";
-
-
-            document
-            .getElementById("videoPreview")
-            .style.display = "none";
+            this.value =
+                "";
 
 
             return;
@@ -1203,37 +1220,34 @@ document
 
 
         document
-        .getElementById("videoName")
+        .getElementById(
+            "videoName"
+        )
         .textContent =
             file.name +
             " (" +
-            formatFileSize(file.size) +
+            fileSize(
+                file.size
+            ) +
             ")";
 
 
         const preview =
             document
-            .getElementById("videoPreview");
-
-
-        if(
-            preview.dataset.url
-        ){
-
-            URL.revokeObjectURL(
-                preview.dataset.url
+            .getElementById(
+                "videoPreview"
             );
-
-        }
 
 
         const url =
-            URL.createObjectURL(file);
+            URL.createObjectURL(
+                file
+            );
 
 
-        preview.src = url;
+        preview.src =
+            url;
 
-        preview.dataset.url = url;
 
         preview.style.display =
             "block";
@@ -1246,8 +1260,8 @@ document
 PROGRESS
 ===================================================== */
 
-function showProgress(
-    percent,
+function progress(
+    value,
     text
 ){
 
@@ -1261,10 +1275,10 @@ function showProgress(
 
     document
     .getElementById(
-        "progressBar"
+        "progress"
     )
     .style.width =
-        percent + "%";
+        value + "%";
 
 
     document
@@ -1278,51 +1292,30 @@ function showProgress(
 
 
 /* =====================================================
-HIDE PROGRESS
-===================================================== */
-
-function hideProgress(){
-
-    document
-    .getElementById(
-        "progressBox"
-    )
-    .style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-SUBMIT PRODUK
+SUBMIT
 ===================================================== */
 
 document
 .getElementById("productForm")
 .addEventListener(
     "submit",
-    async function(e){
+    async function(event){
 
-        e.preventDefault();
+        event.preventDefault();
 
 
-        const saveButton =
+        const button =
             document
             .getElementById(
                 "saveButton"
             );
 
 
-        saveButton.disabled =
+        button.disabled =
             true;
 
 
-        saveButton.textContent =
-            "⏳ Menyimpan...";
-
-
         try{
-
 
             const name =
                 document
@@ -1378,23 +1371,58 @@ document
                 .files[0];
 
 
-            const MAX_VIDEO_SIZE =
-                500 *
-                1024 *
-                1024;
-
-
             if(
-                videoFile &&
-                videoFile.size >
-                MAX_VIDEO_SIZE
+                !name ||
+                price < 0 ||
+                stock < 0 ||
+                !desc
             ){
 
                 alert(
-                    "Video melebihi batas 500 MB."
+                    "Mohon lengkapi data produk."
                 );
 
                 return;
+
+            }
+
+
+            if(
+                !editingId &&
+                !imageFile
+            ){
+
+                alert(
+                    "Foto produk wajib dipilih."
+                );
+
+                return;
+
+            }
+
+
+            /* BATAS VIDEO 500 MB */
+
+            if(videoFile){
+
+                const maxVideo =
+                    500 *
+                    1024 *
+                    1024;
+
+
+                if(
+                    videoFile.size >
+                    maxVideo
+                ){
+
+                    alert(
+                        "Ukuran video maksimal 500 MB."
+                    );
+
+                    return;
+
+                }
 
             }
 
@@ -1408,10 +1436,127 @@ document
 
 
             /* =================================================
-            EDIT
+            TAMBAH PRODUK
             ================================================= */
 
-            if(editingId){
+            if(!editingId){
+
+                const productId =
+                    Date.now();
+
+
+                let imageId =
+                    "";
+
+
+                let videoId =
+                    "";
+
+
+                /* FOTO */
+
+                if(imageFile){
+
+                    progress(
+                        20,
+                        "Menyimpan foto..."
+                    );
+
+
+                    imageId =
+                        createFileId(
+                            "image"
+                        );
+
+
+                    await saveFile(
+                        imageId,
+                        imageFile
+                    );
+
+                }
+
+
+                /* VIDEO */
+
+                if(videoFile){
+
+                    progress(
+                        55,
+                        "Menyimpan video..."
+                    );
+
+
+                    videoId =
+                        createFileId(
+                            "video"
+                        );
+
+
+                    await saveFile(
+                        videoId,
+                        videoFile
+                    );
+
+                }
+
+
+                progress(
+                    85,
+                    "Menyimpan data produk..."
+                );
+
+
+                const product = {
+
+                    id:productId,
+
+                    name:name,
+
+                    price:price,
+
+                    stock:stock,
+
+                    desc:desc,
+
+                    imageId:imageId,
+
+                    videoId:videoId
+
+                };
+
+
+                products.push(
+                    product
+                );
+
+
+                localStorage.setItem(
+                    "products",
+                    JSON.stringify(
+                        products
+                    )
+                );
+
+
+                progress(
+                    100,
+                    "Produk berhasil disimpan!"
+                );
+
+
+                alert(
+                    "✅ Produk berhasil ditambahkan!"
+                );
+
+            }
+
+
+            /* =================================================
+            EDIT PRODUK
+            ================================================= */
+
+            else{
 
                 const index =
                     products.findIndex(
@@ -1432,17 +1577,17 @@ document
                 }
 
 
-                const oldProduct =
+                const old =
                     products[index];
 
 
-                let image =
-                    oldProduct.image ||
+                let imageId =
+                    old.imageId ||
                     "";
 
 
                 let videoId =
-                    oldProduct.videoId ||
+                    old.videoId ||
                     "";
 
 
@@ -1450,16 +1595,31 @@ document
 
                 if(imageFile){
 
-                    showProgress(
-                        20,
-                        "Memproses foto..."
+                    progress(
+                        25,
+                        "Mengganti foto..."
                     );
 
 
-                    image =
-                        await fileToBase64(
-                            imageFile
+                    if(imageId){
+
+                        await removeFile(
+                            imageId
                         );
+
+                    }
+
+
+                    imageId =
+                        createFileId(
+                            "image"
+                        );
+
+
+                    await saveFile(
+                        imageId,
+                        imageFile
+                    );
 
                 }
 
@@ -1468,15 +1628,15 @@ document
 
                 if(videoFile){
 
-                    showProgress(
-                        50,
-                        "Menyimpan video..."
+                    progress(
+                        60,
+                        "Mengganti video..."
                     );
 
 
                     if(videoId){
 
-                        await deleteVideoFromDB(
+                        await removeFile(
                             videoId
                         );
 
@@ -1484,27 +1644,22 @@ document
 
 
                     videoId =
-                        "video_" +
-                        Date.now();
+                        createFileId(
+                            "video"
+                        );
 
 
-                    await saveVideoToDB(
+                    await saveFile(
                         videoId,
                         videoFile
                     );
 
                 }
-
-
-                showProgress(
-                    80,
-                    "Menyimpan data produk..."
-                );
 
 
                 products[index] = {
 
-                    ...oldProduct,
+                    ...old,
 
                     name:name,
 
@@ -1514,114 +1669,16 @@ document
 
                     desc:desc,
 
-                    image:image,
+                    imageId:imageId,
 
                     videoId:videoId
 
                 };
 
 
-                localStorage.setItem(
-                    "products",
-                    JSON.stringify(
-                        products
-                    )
-                );
-
-
-                showProgress(
-                    100,
-                    "Produk berhasil diperbarui."
-                );
-
-
-                alert(
-                    "Produk berhasil diperbarui!"
-                );
-
-            }
-
-
-            /* =================================================
-            TAMBAH
-            ================================================= */
-
-            else{
-
-                if(!imageFile){
-
-                    alert(
-                        "Foto produk wajib diupload!"
-                    );
-
-                    return;
-
-                }
-
-
-                showProgress(
-                    20,
-                    "Memproses foto..."
-                );
-
-
-                const image =
-                    await fileToBase64(
-                        imageFile
-                    );
-
-
-                let videoId = "";
-
-
-                if(videoFile){
-
-                    showProgress(
-                        50,
-                        "Menyimpan video besar..."
-                    );
-
-
-                    videoId =
-                        "video_" +
-                        Date.now();
-
-
-                    await saveVideoToDB(
-                        videoId,
-                        videoFile
-                    );
-
-                }
-
-
-                showProgress(
-                    80,
-                    "Menyimpan produk..."
-                );
-
-
-                const product = {
-
-                    id:Date.now(),
-
-                    name:name,
-
-                    price:price,
-
-                    stock:stock,
-
-                    desc:desc,
-
-                    image:image,
-
-                    videoId:videoId
-
-                };
-
-
-                products.push(
-                    product
+                progress(
+                    85,
+                    "Menyimpan perubahan..."
                 );
 
 
@@ -1633,96 +1690,22 @@ document
                 );
 
 
-                showProgress(
+                progress(
                     100,
-                    "Produk berhasil disimpan."
+                    "Perubahan berhasil disimpan!"
                 );
 
 
                 alert(
-                    "Produk berhasil ditambahkan!"
+                    "✅ Produk berhasil diperbarui!"
                 );
 
             }
 
 
-            /* RESET */
+            resetForm();
 
-            editingId = null;
-
-
-            document
-            .getElementById(
-                "productForm"
-            )
-            .reset();
-
-
-            document
-            .getElementById(
-                "imagePreview"
-            )
-            .style.display =
-                "none";
-
-
-            document
-            .getElementById(
-                "videoPreview"
-            )
-            .style.display =
-                "none";
-
-
-            document
-            .getElementById(
-                "imageName"
-            )
-            .textContent =
-                "";
-
-
-            document
-            .getElementById(
-                "videoName"
-            )
-            .textContent =
-                "";
-
-
-            document
-            .getElementById(
-                "cancelEdit"
-            )
-            .classList.add(
-                "hidden"
-            );
-
-
-            document
-            .getElementById(
-                "formTitle"
-            )
-            .textContent =
-                "➕ Tambah Produk Baru";
-
-
-            document
-            .getElementById(
-                "productImage"
-            )
-            .setAttribute(
-                "required",
-                ""
-            );
-
-
-            renderProducts();
-
-            setTimeout(
-                hideProgress,
-                1000
-            );
+            await renderProducts();
 
 
         }catch(error){
@@ -1733,18 +1716,15 @@ document
 
 
             alert(
-                "Terjadi kesalahan saat menyimpan produk.\n\n" +
+                "❌ Produk gagal disimpan.\n\n" +
+                "Penyebab: " +
                 error.message
             );
 
         }finally{
 
-            saveButton.disabled =
+            button.disabled =
                 false;
-
-
-            saveButton.textContent =
-                "💾 Simpan Produk";
 
         }
 
@@ -1753,51 +1733,104 @@ document
 
 
 /* =====================================================
-FILE TO BASE64
-HANYA UNTUK FOTO
+RESET FORM
 ===================================================== */
 
-function fileToBase64(file){
+function resetForm(){
 
-    return new Promise(
-        (resolve,reject)=>{
-
-            const reader =
-                new FileReader();
+    editingId =
+        null;
 
 
-            reader.onload =
-                function(){
-
-                    resolve(
-                        reader.result
-                    );
-
-                };
+    document
+    .getElementById(
+        "productForm"
+    )
+    .reset();
 
 
-            reader.onerror =
-                function(){
-
-                    reject(
-                        reader.error
-                    );
-
-                };
+    document
+    .getElementById(
+        "formTitle"
+    )
+    .textContent =
+        "➕ Tambah Produk Baru";
 
 
-            reader.readAsDataURL(
-                file
-            );
-
-        }
+    document
+    .getElementById(
+        "cancelEdit"
+    )
+    .classList.add(
+        "hidden"
     );
+
+
+    document
+    .getElementById(
+        "productImage"
+    )
+    .setAttribute(
+        "required",
+        ""
+    );
+
+
+    document
+    .getElementById(
+        "imagePreview"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "videoPreview"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "imageName"
+    )
+    .textContent =
+        "";
+
+
+    document
+    .getElementById(
+        "videoName"
+    )
+    .textContent =
+        "";
+
+
+    document
+    .getElementById(
+        "progressBox"
+    )
+    .style.display =
+        "none";
 
 }
 
 
 /* =====================================================
-RENDER PRODUCTS
+BATAL EDIT
+===================================================== */
+
+function cancelEdit(){
+
+    resetForm();
+
+}
+
+
+/* =====================================================
+RENDER PRODUK
 ===================================================== */
 
 async function renderProducts(){
@@ -1836,7 +1869,8 @@ async function renderProducts(){
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     for(
@@ -1844,17 +1878,58 @@ async function renderProducts(){
         of products
     ){
 
-        const div =
+        const element =
             document.createElement(
                 "div"
             );
 
 
-        div.className =
+        element.className =
             "product";
 
 
-        let videoHTML = "";
+        /* FOTO */
+
+        let imageURL =
+            "https://via.placeholder.com/600x400?text=No+Image";
+
+
+        if(
+            product.imageId
+        ){
+
+            try{
+
+                const file =
+                    await getFile(
+                        product.imageId
+                    );
+
+
+                if(file){
+
+                    imageURL =
+                        URL.createObjectURL(
+                            file.blob
+                        );
+
+                }
+
+            }catch(error){
+
+                console.error(
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* VIDEO */
+
+        let videoHTML =
+            "";
 
 
         if(
@@ -1863,17 +1938,17 @@ async function renderProducts(){
 
             try{
 
-                const video =
-                    await getVideoFromDB(
+                const file =
+                    await getFile(
                         product.videoId
                     );
 
 
-                if(video){
+                if(file){
 
                     const videoURL =
                         URL.createObjectURL(
-                            video.blob
+                            file.blob
                         );
 
 
@@ -1885,7 +1960,10 @@ async function renderProducts(){
 
                             <source
                                 src="${videoURL}"
-                                type="${video.type || 'video/mp4'}">
+                                type="${
+                                    file.type ||
+                                    "video/mp4"
+                                }">
 
                             Browser tidak mendukung video.
 
@@ -1898,7 +1976,6 @@ async function renderProducts(){
             }catch(error){
 
                 console.error(
-                    "Video error:",
                     error
                 );
 
@@ -1907,16 +1984,13 @@ async function renderProducts(){
         }
 
 
-        div.innerHTML = `
+        element.innerHTML = `
 
             <img
-                src="${
-                    product.image ||
-                    'https://via.placeholder.com/600x400?text=No+Image'
-                }"
-                onerror="
-                    this.src='https://via.placeholder.com/600x400?text=No+Image'
-                "
+                src="${imageURL}"
+                alt="${safe(
+                    product.name
+                )}"
             >
 
 
@@ -1924,9 +1998,11 @@ async function renderProducts(){
 
 
                 <h3>
-                    ${escapeHTML(
+
+                    ${safe(
                         product.name
                     )}
+
                 </h3>
 
 
@@ -1964,7 +2040,7 @@ async function renderProducts(){
 
                 <p class="product-desc">
 
-                    ${escapeHTML(
+                    ${safe(
                         product.desc
                     )}
 
@@ -2011,7 +2087,7 @@ async function renderProducts(){
 
 
         container.appendChild(
-            div
+            element
         );
 
     }
@@ -2020,28 +2096,7 @@ async function renderProducts(){
 
 
 /* =====================================================
-ESCAPE HTML
-===================================================== */
-
-function escapeHTML(text){
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.textContent =
-        text || "";
-
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-EDIT PRODUCT
+EDIT
 ===================================================== */
 
 function editProduct(id){
@@ -2062,6 +2117,10 @@ function editProduct(id){
 
 
     if(!product){
+
+        alert(
+            "Produk tidak ditemukan."
+        );
 
         return;
 
@@ -2142,93 +2201,18 @@ function editProduct(id){
 
 
 /* =====================================================
-CANCEL EDIT
-===================================================== */
-
-function cancelEdit(){
-
-    editingId = null;
-
-
-    document
-    .getElementById(
-        "productForm"
-    )
-    .reset();
-
-
-    document
-    .getElementById(
-        "cancelEdit"
-    )
-    .classList.add(
-        "hidden"
-    );
-
-
-    document
-    .getElementById(
-        "formTitle"
-    )
-    .textContent =
-        "➕ Tambah Produk Baru";
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display =
-        "none";
-
-
-    document
-    .getElementById(
-        "videoPreview"
-    )
-    .style.display =
-        "none";
-
-
-    document
-    .getElementById(
-        "imageName"
-    )
-    .textContent =
-        "";
-
-
-    document
-    .getElementById(
-        "videoName"
-    )
-    .textContent =
-        "";
-
-
-    document
-    .getElementById(
-        "productImage"
-    )
-    .setAttribute(
-        "required",
-        ""
-    );
-
-}
-
-
-/* =====================================================
-DELETE PRODUCT
+HAPUS
 ===================================================== */
 
 async function deleteProduct(id){
 
-    if(
-        !confirm(
+    const yakin =
+        confirm(
             "Yakin ingin menghapus produk ini?"
-        )
-    ){
+        );
+
+
+    if(!yakin){
 
         return;
 
@@ -2250,50 +2234,78 @@ async function deleteProduct(id){
         );
 
 
-    if(
-        product &&
-        product.videoId
-    ){
+    if(!product){
 
-        try{
-
-            await deleteVideoFromDB(
-                product.videoId
-            );
-
-        }catch(error){
-
-            console.error(
-                error
-            );
-
-        }
+        return;
 
     }
 
 
-    products =
-        products.filter(
-            p =>
-            p.id !== id
+    try{
+
+        if(
+            product.imageId
+        ){
+
+            await removeFile(
+                product.imageId
+            );
+
+        }
+
+
+        if(
+            product.videoId
+        ){
+
+            await removeFile(
+                product.videoId
+            );
+
+        }
+
+
+        products =
+            products.filter(
+                p =>
+                p.id !== id
+            );
+
+
+        localStorage.setItem(
+            "products",
+            JSON.stringify(
+                products
+            )
         );
 
 
-    localStorage.setItem(
-        "products",
-        JSON.stringify(
-            products
-        )
-    );
+        await renderProducts();
 
 
-    renderProducts();
+        alert(
+            "Produk berhasil dihapus."
+        );
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Gagal menghapus produk."
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-STATUS ORDER
+STATUS PESANAN
 ===================================================== */
 
 const statuses = [
@@ -2375,7 +2387,96 @@ function statusNumber(status){
 
 
 /* =====================================================
-ORDER
+STEP
+===================================================== */
+
+function stepClass(
+    current,
+    step
+){
+
+    if(
+        step < current
+    ){
+
+        return "done";
+
+    }
+
+
+    if(
+        step === current
+    ){
+
+        return "active";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+LINE
+===================================================== */
+
+function lineClass(
+    current,
+    step
+){
+
+    return current >= step
+        ? "done"
+        : "";
+
+}
+
+
+/* =====================================================
+ICON
+===================================================== */
+
+function getIcon(status){
+
+    if(
+        status ===
+        "Sudah Dibayar"
+    ){
+
+        return "✅";
+
+    }
+
+
+    if(
+        status ===
+        "Sedang Dikemas"
+    ){
+
+        return "📦";
+
+    }
+
+
+    if(
+        status ===
+        "Sudah Dikirim"
+    ){
+
+        return "🚚";
+
+    }
+
+
+    return "💰";
+
+}
+
+
+/* =====================================================
+RENDER ORDERS
 ===================================================== */
 
 function renderOrders(){
@@ -2433,76 +2534,64 @@ function renderOrders(){
             <div class="order">
 
                 <h3>
-                    📦 ${escapeHTML(
+                    📦 ${safe(
                         order.productName
                     )}
                 </h3>
 
 
                 <p>
-
                     <b>Customer:</b>
-                    ${escapeHTML(
+                    ${safe(
                         order.customer
                     )}
-
                 </p>
 
 
                 <p>
-
                     <b>Jumlah:</b>
                     ${order.quantity || 1}
-
                 </p>
 
 
                 <p>
-
                     <b>Harga:</b>
                     ${rupiah(
                         order.price
                     )}
-
                 </p>
 
 
                 <p>
-
                     <b>Total:</b>
                     ${rupiah(
                         order.total ||
                         order.price
                     )}
-
                 </p>
 
 
                 <p>
-
                     <b>Pembayaran:</b>
-                    ${escapeHTML(
+                    ${safe(
                         order.payment ||
                         "-"
                     )}
-
                 </p>
 
 
                 <p>
-
                     <b>Tanggal:</b>
-                    ${escapeHTML(
+                    ${safe(
                         order.date ||
                         "-"
                     )}
-
                 </p>
 
 
                 <p style="margin-top:12px">
 
-                    <b>Status saat ini:</b>
+                    <b>Status:</b>
 
                     <span
                         class="
@@ -2516,7 +2605,9 @@ function renderOrders(){
                             order.status
                         )}
 
-                        ${order.status}
+                        ${safe(
+                            order.status
+                        )}
 
                     </span>
 
@@ -2636,11 +2727,9 @@ function renderOrders(){
 
 
                 <label>
-
                     <b>
                         Ubah Status Pesanan:
                     </b>
-
                 </label>
 
 
@@ -2651,7 +2740,6 @@ function renderOrders(){
                             this.value
                         )
                     ">
-
 
                     ${statuses.map(
                         status => `
@@ -2675,7 +2763,6 @@ function renderOrders(){
                     `
                     ).join("")}
 
-
                 </select>
 
 
@@ -2690,103 +2777,7 @@ function renderOrders(){
 
 
 /* =====================================================
-STEP CLASS
-===================================================== */
-
-function stepClass(
-    current,
-    step
-){
-
-    if(
-        step < current
-    ){
-
-        return "done";
-
-    }
-
-
-    if(
-        step === current
-    ){
-
-        return "active";
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =====================================================
-LINE CLASS
-===================================================== */
-
-function lineClass(
-    current,
-    step
-){
-
-    if(
-        current >= step
-    ){
-
-        return "done";
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =====================================================
-ICON
-===================================================== */
-
-function getIcon(status){
-
-    if(
-        status ===
-        "Sudah Dibayar"
-    ){
-
-        return "✅";
-
-    }
-
-
-    if(
-        status ===
-        "Sedang Dikemas"
-    ){
-
-        return "📦";
-
-    }
-
-
-    if(
-        status ===
-        "Sudah Dikirim"
-    ){
-
-        return "🚚";
-
-    }
-
-
-    return "💰";
-
-}
-
-
-/* =====================================================
-CHANGE STATUS
+UBAH STATUS
 ===================================================== */
 
 function changeStatus(
@@ -2861,23 +2852,22 @@ function logout(){
 
 
 /* =====================================================
-INITIALIZE
+START
 ===================================================== */
 
-async function init(){
+async function start(){
 
     try{
 
         await openDatabase();
 
-        console.log(
-            "IndexedDB berhasil dibuka."
-        );
-
-
-        renderProducts();
+        await renderProducts();
 
         renderOrders();
+
+        console.log(
+            "GadgetStore Admin siap."
+        );
 
     }catch(error){
 
@@ -2887,7 +2877,7 @@ async function init(){
 
 
         alert(
-            "Browser tidak mendukung penyimpanan IndexedDB."
+            "Browser tidak mendukung IndexedDB atau terjadi kesalahan database."
         );
 
     }
@@ -2895,10 +2885,9 @@ async function init(){
 }
 
 
-init();
+start();
 
 </script>
 
 </body>
-
-            </html>
+    </html>

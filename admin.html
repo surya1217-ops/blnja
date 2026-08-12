@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -68,13 +69,8 @@ h2{
     margin-bottom:20px;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-}
+
+/* ================= INPUT ================= */
 
 input,
 textarea,
@@ -103,14 +99,15 @@ select:focus{
 }
 
 textarea{
+
     min-height:100px;
+
     resize:vertical;
+
 }
 
-label{
-    font-weight:bold;
-    color:#334155;
-}
+
+/* ================= BUTTON ================= */
 
 button{
 
@@ -126,6 +123,8 @@ button{
 
     color:white;
 
+    background:#0878d1;
+
     margin:3px;
 
     transition:.2s;
@@ -133,13 +132,9 @@ button{
 }
 
 button:hover{
-    transform:translateY(-2px);
-}
 
-button:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-    transform:none;
+    transform:translateY(-2px);
+
 }
 
 .success{
@@ -162,14 +157,34 @@ button:disabled{
     background:#0878d1;
 }
 
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* ================= PRODUCT ================= */
+
 .product-grid{
 
     display:grid;
 
     grid-template-columns:
     repeat(
-        2,
-        minmax(0,1fr)
+        auto-fit,
+        minmax(270px,1fr)
     );
 
     gap:20px;
@@ -192,20 +207,22 @@ button:disabled{
 
     width:100%;
 
-    height:230px;
+    height:190px;
 
     object-fit:cover;
-
-    display:block;
 
 }
 
 .product-body{
+
     padding:16px;
+
 }
 
 .product-body h3{
+
     margin-bottom:7px;
+
 }
 
 .price{
@@ -266,9 +283,10 @@ button:disabled{
 
     background:#000;
 
-    max-height:300px;
-
 }
+
+
+/* ================= ORDERS ================= */
 
 .order{
 
@@ -293,13 +311,21 @@ button:disabled{
 }
 
 .order p{
+
     margin:7px 0;
+
 }
 
 .order select{
+
     max-width:350px;
+
     margin-top:10px;
+
 }
+
+
+/* ================= STATUS ================= */
 
 .status{
 
@@ -347,6 +373,9 @@ button:disabled{
 
 }
 
+
+/* ================= TRACKING ================= */
+
 .tracking{
 
     display:flex;
@@ -354,8 +383,6 @@ button:disabled{
     align-items:center;
 
     margin:20px 0;
-
-    overflow-x:auto;
 
 }
 
@@ -439,6 +466,19 @@ button:disabled{
 
 }
 
+.step small{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:10px;
+
+}
+
+
+/* ================= EMPTY ================= */
+
 .empty{
 
     text-align:center;
@@ -450,8 +490,13 @@ button:disabled{
 }
 
 .hidden{
+
     display:none!important;
+
 }
+
+
+/* ================= UPLOAD ================= */
 
 .upload-box{
 
@@ -481,9 +526,9 @@ button:disabled{
 
     margin-top:10px;
 
-    max-width:300px;
+    max-width:250px;
 
-    max-height:200px;
+    max-height:180px;
 
     border-radius:10px;
 
@@ -499,23 +544,8 @@ button:disabled{
 
 }
 
-.admin-login{
 
-    max-width:450px;
-
-    margin:60px auto;
-
-}
-
-.login-icon{
-
-    text-align:center;
-
-    font-size:55px;
-
-    margin-bottom:10px;
-
-}
+/* ================= FOOTER ================= */
 
 footer{
 
@@ -527,18 +557,21 @@ footer{
 
 }
 
-@media(max-width:700px){
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
 
     header h1{
         font-size:24px;
     }
 
-    .product-grid{
-        grid-template-columns:1fr;
-    }
-
     .tracking{
         overflow-x:auto;
+    }
+
+    .step{
+        min-width:65px;
     }
 
 }
@@ -547,99 +580,13 @@ footer{
 
 </head>
 
+
 <body>
 
 
 <!-- =====================================================
-ADMIN LOGIN
+HEADER
 ===================================================== -->
-
-<div id="adminLoginPage">
-
-    <div class="container">
-
-        <div class="card admin-login">
-
-            <div class="login-icon">
-                ⚙️
-            </div>
-
-            <h2 style="text-align:center">
-                Administrator Login
-            </h2>
-
-            <p style="
-                text-align:center;
-                color:#64748b;
-                margin-bottom:20px;
-            ">
-                Silakan masukkan akun administrator.
-            </p>
-
-
-            <label>
-                Username
-            </label>
-
-            <input
-                type="text"
-                id="adminLoginUsername"
-                placeholder="Username admin"
-            >
-
-
-            <label>
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="adminLoginPassword"
-                placeholder="Password admin"
-            >
-
-
-            <button
-                class="blue"
-                style="width:100%"
-                onclick="adminLogin()"
-            >
-                🔐 Login Administrator
-            </button>
-
-
-            <button
-                class="back"
-                style="width:100%"
-                onclick="location.href='index.html'"
-            >
-                🛍️ Kembali ke Customer
-            </button>
-
-
-            <p style="
-                text-align:center;
-                margin-top:20px;
-                color:#64748b;
-                font-size:13px;
-            ">
-                Demo Admin:<br>
-                Username: <b>admin</b><br>
-                Password: <b>admin123</b>
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-ADMIN DASHBOARD
-===================================================== -->
-
-<div id="adminDashboard" class="hidden">
 
 <header>
 
@@ -652,6 +599,7 @@ ADMIN DASHBOARD
     </p>
 
 </header>
+
 
 
 <div class="container">
@@ -673,7 +621,9 @@ ADMIN HEADER
 
             <p>
                 Login sebagai:
-                <b>admin</b>
+                <b id="adminName">
+                    admin
+                </b>
             </p>
 
         </div>
@@ -683,17 +633,19 @@ ADMIN HEADER
 
             <button
                 class="back"
-                onclick="location.href='index.html'"
-            >
+                onclick="location.href='index.html'">
+
                 🛍️ Halaman Customer
+
             </button>
 
 
             <button
                 class="delete"
-                onclick="adminLogout()"
-            >
+                onclick="logout()">
+
                 Keluar
+
             </button>
 
         </div>
@@ -701,6 +653,7 @@ ADMIN HEADER
     </div>
 
 </div>
+
 
 
 <!-- =====================================================
@@ -729,6 +682,7 @@ FORM PRODUK
         >
 
 
+
         <label>
             Harga Produk (Rp)
         </label>
@@ -740,6 +694,7 @@ FORM PRODUK
             min="0"
             required
         >
+
 
 
         <label>
@@ -755,6 +710,7 @@ FORM PRODUK
         >
 
 
+
         <label>
             Deskripsi Produk
         </label>
@@ -766,7 +722,8 @@ FORM PRODUK
         ></textarea>
 
 
-        <!-- FOTO -->
+
+        <!-- ================= FOTO ================= -->
 
         <div class="upload-box">
 
@@ -778,6 +735,7 @@ FORM PRODUK
                 type="file"
                 id="productImage"
                 accept="image/*"
+                required
             >
 
             <div
@@ -793,22 +751,14 @@ FORM PRODUK
         </div>
 
 
-        <!-- VIDEO -->
+
+        <!-- ================= VIDEO ================= -->
 
         <div class="upload-box">
 
             <label>
-                🎬 Upload Video Produk
+                🎬 Upload Video Produk (Opsional jika ukuran file terlalu besar)
             </label>
-
-            <p style="
-                color:#64748b;
-                font-size:13px;
-                margin:7px 0;
-            ">
-                Video disimpan di IndexedDB, bukan localStorage,
-                sehingga tidak mudah terkena batas kecil localStorage.
-            </p>
 
             <input
                 type="file"
@@ -830,11 +780,13 @@ FORM PRODUK
         </div>
 
 
+
         <button
             type="submit"
-            class="success"
-        >
+            class="success">
+
             💾 Simpan Produk
+
         </button>
 
 
@@ -842,14 +794,16 @@ FORM PRODUK
             type="button"
             class="back hidden"
             id="cancelEdit"
-            onclick="cancelEdit()"
-        >
+            onclick="cancelEdit()">
+
             Batal Edit
+
         </button>
 
     </form>
 
 </div>
+
 
 
 <!-- =====================================================
@@ -870,6 +824,7 @@ DAFTAR PRODUK
 </div>
 
 
+
 <!-- =====================================================
 PESANAN
 ===================================================== -->
@@ -888,350 +843,77 @@ PESANAN
 </div>
 
 
+
 <footer>
-    © 2026 GadgetStore Pro — Administrator
+
+    © 2026 GadgetStore Pro —
+    Administrator
+
 </footer>
 
-</div>
 
 
 <script>
 
-/* =====================================================
-DATABASE
-===================================================== */
-
-const DB_NAME = "GadgetStoreDatabase";
-const DB_VERSION = 1;
-
-let db;
-
 
 /* =====================================================
-OPEN DATABASE
+CEK ADMIN
 ===================================================== */
 
-function openDatabase(){
+if(
 
-    return new Promise((resolve,reject)=>{
-
-        const request =
-            indexedDB.open(
-                DB_NAME,
-                DB_VERSION
-            );
-
-
-        request.onupgradeneeded=function(e){
-
-            const database =
-                e.target.result;
-
-
-            if(
-                !database.objectStoreNames.contains(
-                    "media"
-                )
-            ){
-
-                database.createObjectStore(
-                    "media",
-                    {
-                        keyPath:"id"
-                    }
-                );
-
-            }
-
-        };
-
-
-        request.onsuccess=function(e){
-
-            db=e.target.result;
-
-            resolve(db);
-
-        };
-
-
-        request.onerror=function(){
-
-            reject(request.error);
-
-        };
-
-    });
-
-}
-
-
-/* =====================================================
-SAVE MEDIA
-===================================================== */
-
-function saveMedia(id,file){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                "media",
-                "readwrite"
-            );
-
-
-        const store =
-            transaction.objectStore(
-                "media"
-            );
-
-
-        const request =
-            store.put({
-
-                id:id,
-
-                blob:file,
-
-                type:file.type
-
-            });
-
-
-        request.onsuccess=()=>{
-            resolve();
-        };
-
-
-        request.onerror=()=>{
-            reject(request.error);
-        };
-
-    });
-
-}
-
-
-/* =====================================================
-GET MEDIA
-===================================================== */
-
-function getMedia(id){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                "media",
-                "readonly"
-            );
-
-
-        const store =
-            transaction.objectStore(
-                "media"
-            );
-
-
-        const request =
-            store.get(id);
-
-
-        request.onsuccess=function(){
-
-            resolve(
-                request.result || null
-            );
-
-        };
-
-
-        request.onerror=function(){
-
-            reject(request.error);
-
-        };
-
-    });
-
-}
-
-
-/* =====================================================
-DELETE MEDIA
-===================================================== */
-
-function deleteMedia(id){
-
-    return new Promise((resolve,reject)=>{
-
-        if(!id){
-
-            resolve();
-
-            return;
-
-        }
-
-
-        const transaction =
-            db.transaction(
-                "media",
-                "readwrite"
-            );
-
-
-        const store =
-            transaction.objectStore(
-                "media"
-            );
-
-
-        const request =
-            store.delete(id);
-
-
-        request.onsuccess=()=>{
-            resolve();
-        };
-
-
-        request.onerror=()=>{
-            reject(request.error);
-        };
-
-    });
-
-}
-
-
-/* =====================================================
-ADMIN LOGIN
-===================================================== */
-
-function adminLogin(){
-
-    const username =
-        document
-        .getElementById(
-            "adminLoginUsername"
-        )
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById(
-            "adminLoginPassword"
-        )
-        .value;
-
-
-    if(
-        username!=="admin" ||
-        password!=="admin123"
-    ){
-
-        alert(
-            "Username atau password admin salah!"
-        );
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "loggedUser",
-        "admin"
-    );
-
-
-    localStorage.setItem(
-        "loggedRole",
-        "admin"
-    );
-
-
-    showDashboard();
-
-}
-
-
-/* =====================================================
-SHOW DASHBOARD
-===================================================== */
-
-function showDashboard(){
-
-    document
-    .getElementById(
-        "adminLoginPage"
-    )
-    .classList.add(
-        "hidden"
-    );
-
-
-    document
-    .getElementById(
-        "adminDashboard"
-    )
-    .classList.remove(
-        "hidden"
-    );
-
-}
-
-
-/* =====================================================
-ADMIN LOGOUT
-===================================================== */
-
-function adminLogout(){
-
-    localStorage.removeItem(
+    localStorage.getItem(
         "loggedUser"
-    );
+    ) !== "admin"
 
-    localStorage.removeItem(
+    &&
+
+    localStorage.getItem(
         "loggedRole"
-    );
+    ) !== "admin"
 
+){
+
+    // opsional: uncomment bila ingin mengaktifkan proteksi login
+    /*
+    alert(
+        "Akses ditolak! Silakan login sebagai admin."
+    );
 
     location.href="index.html";
+    */
 
 }
 
 
 /* =====================================================
-CHECK ADMIN
+STORAGE DEFAULT
 ===================================================== */
 
-function checkAdmin(){
+if(
+    !localStorage.getItem(
+        "products"
+    )
+){
 
-    const user =
-        localStorage.getItem(
-            "loggedUser"
-        );
+    localStorage.setItem(
+        "products",
+        JSON.stringify([])
+    );
+
+}
 
 
-    const role =
-        localStorage.getItem(
-            "loggedRole"
-        );
+if(
+    !localStorage.getItem(
+        "orders"
+    )
+){
 
-
-    if(
-        user==="admin" &&
-        role==="admin"
-    ){
-
-        showDashboard();
-
-    }
+    localStorage.setItem(
+        "orders",
+        JSON.stringify([])
+    );
 
 }
 
@@ -1262,7 +944,35 @@ let editingId=null;
 
 
 /* =====================================================
-IMAGE PREVIEW
+FILE TO BASE64
+===================================================== */
+
+function fileToBase64(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const reader=
+                new FileReader();
+
+            reader.onload=()=>
+                resolve(
+                    reader.result
+                );
+
+            reader.onerror=
+                reject;
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+PREVIEW IMAGE
 ===================================================== */
 
 document
@@ -1271,9 +981,7 @@ document
     "change",
     function(){
 
-        const file =
-            this.files[0];
-
+        const file=this.files[0];
 
         if(!file)return;
 
@@ -1283,20 +991,19 @@ document
             "imageName"
         )
         .textContent=
-            file.name;
+        file.name;
 
 
-        const preview =
+        const preview=
             document.getElementById(
                 "imagePreview"
             );
 
 
-        preview.src =
+        preview.src=
             URL.createObjectURL(
                 file
             );
-
 
         preview.style.display=
             "block";
@@ -1306,7 +1013,7 @@ document
 
 
 /* =====================================================
-VIDEO PREVIEW
+PREVIEW VIDEO
 ===================================================== */
 
 document
@@ -1315,9 +1022,7 @@ document
     "change",
     function(){
 
-        const file =
-            this.files[0];
-
+        const file=this.files[0];
 
         if(!file)return;
 
@@ -1327,20 +1032,19 @@ document
             "videoName"
         )
         .textContent=
-            file.name;
+        file.name;
 
 
-        const preview =
+        const preview=
             document.getElementById(
                 "videoPreview"
             );
 
 
-        preview.src =
+        preview.src=
             URL.createObjectURL(
                 file
             );
-
 
         preview.style.display=
             "block";
@@ -1350,7 +1054,7 @@ document
 
 
 /* =====================================================
-SUBMIT PRODUCT
+SUBMIT PRODUK
 ===================================================== */
 
 document
@@ -1362,16 +1066,15 @@ document
         e.preventDefault();
 
 
-        const name =
+        const name=
             document
             .getElementById(
                 "productName"
             )
-            .value
-            .trim();
+            .value.trim();
 
 
-        const price =
+        const price=
             Number(
                 document
                 .getElementById(
@@ -1381,7 +1084,7 @@ document
             );
 
 
-        const stock =
+        const stock=
             Number(
                 document
                 .getElementById(
@@ -1391,16 +1094,15 @@ document
             );
 
 
-        const desc =
+        const desc=
             document
             .getElementById(
                 "productDesc"
             )
-            .value
-            .trim();
+            .value.trim();
 
 
-        const imageFile =
+        const imageFile=
             document
             .getElementById(
                 "productImage"
@@ -1408,7 +1110,7 @@ document
             .files[0];
 
 
-        const videoFile =
+        const videoFile=
             document
             .getElementById(
                 "productVideo"
@@ -1416,7 +1118,7 @@ document
             .files[0];
 
 
-        let products =
+        let products=
             JSON.parse(
                 localStorage.getItem(
                     "products"
@@ -1430,152 +1132,148 @@ document
 
         if(editingId){
 
-            const product =
-                products.find(
-                    p=>p.id===editingId
+            const index=
+                products.findIndex(
+                    p=>
+                    p.id===editingId
                 );
 
 
-            if(!product){
+            if(index!==-1){
 
-                alert(
-                    "Produk tidak ditemukan!"
+                const oldProduct=
+                    products[index];
+
+
+                let image=
+                    oldProduct.image;
+
+
+                let video=
+                    oldProduct.video || "";
+
+
+                if(imageFile){
+
+                    image=
+                        await fileToBase64(
+                            imageFile
+                        );
+
+                }
+
+
+                if(videoFile){
+
+                    video=
+                        await fileToBase64(
+                            videoFile
+                        );
+
+                }
+
+
+                products[index]={
+
+                    ...oldProduct,
+
+                    name:name,
+
+                    price:price,
+
+                    stock:stock,
+
+                    desc:desc,
+
+                    image:image,
+
+                    video:video
+
+                };
+
+            }
+
+
+            try {
+
+                localStorage.setItem(
+                    "products",
+                    JSON.stringify(products)
                 );
+
+                alert("Produk berhasil diperbarui!");
+
+            } catch (err) {
+
+                alert("Gagal menyimpan! Ukuran file foto/video terlalu besar untuk penyimpanan browser (localStorage). Coba gunakan gambar/video yang lebih kecil.");
 
                 return;
 
             }
 
 
-            if(imageFile){
-
-                const newImageId =
-                    "image_"+Date.now();
+            editingId=null;
 
 
-                await saveMedia(
-                    newImageId,
-                    imageFile
-                );
-
-
-                if(product.imageId){
-
-                    await deleteMedia(
-                        product.imageId
-                    );
-
-                }
-
-
-                product.imageId =
-                    newImageId;
-
-            }
-
-
-            if(videoFile){
-
-                const newVideoId =
-                    "video_"+Date.now();
-
-
-                await saveMedia(
-                    newVideoId,
-                    videoFile
-                );
-
-
-                if(product.videoId){
-
-                    await deleteMedia(
-                        product.videoId
-                    );
-
-                }
-
-
-                product.videoId =
-                    newVideoId;
-
-            }
-
-
-            product.name=name;
-
-            product.price=price;
-
-            product.stock=stock;
-
-            product.desc=desc;
-
-
-            localStorage.setItem(
-                "products",
-                JSON.stringify(
-                    products
-                )
+            document
+            .getElementById(
+                "cancelEdit"
+            )
+            .classList.add(
+                "hidden"
             );
 
-
-            alert(
-                "Produk berhasil diperbarui!"
-            );
+            document
+            .getElementById(
+                "formTitle"
+            )
+            .textContent="➕ Tambah Produk Baru";
 
         }
 
 
         /* =================================================
-        ADD
+        TAMBAH
         ================================================= */
 
         else{
 
             if(!imageFile){
 
-                alert(
-                    "Foto produk wajib diupload!"
-                );
+                alert("Foto produk wajib diupload!");
 
                 return;
 
             }
 
 
-            const id =
-                Date.now();
+            let image="";
+
+            let video="";
 
 
-            const imageId =
-                "image_"+id;
+            try {
 
+                image = await fileToBase64(imageFile);
 
-            await saveMedia(
-                imageId,
-                imageFile
-            );
+                if(videoFile){
 
+                    video = await fileToBase64(videoFile);
 
-            let videoId="";
+                }
 
+            } catch(e) {
 
-            if(videoFile){
+                alert("Gagal membaca file berkas.");
 
-                videoId =
-                    "video_"+id;
-
-
-                await saveMedia(
-                    videoId,
-                    videoFile
-                );
+                return;
 
             }
 
 
             const product={
 
-                id:id,
+                id:Date.now(),
 
                 name:name,
 
@@ -1585,119 +1283,90 @@ document
 
                 desc:desc,
 
-                imageId:imageId,
+                image:image,
 
-                videoId:videoId
+                video:video
 
             };
 
 
-            products.push(
-                product
-            );
+            products.push(product);
 
 
-            localStorage.setItem(
-                "products",
-                JSON.stringify(
-                    products
-                )
-            );
+            try {
 
+                localStorage.setItem(
+                    "products",
+                    JSON.stringify(products)
+                );
 
-            alert(
-                "Produk berhasil ditambahkan!"
-            );
+                alert("Produk berhasil ditambahkan!");
+
+            } catch (err) {
+
+                alert("Gagal menyimpan! Ukuran file foto/video terlalu besar untuk penyimpanan browser (localStorage). Kurangi ukuran file foto/video dan coba lagi.");
+
+                return;
+
+            }
 
         }
 
 
-        resetForm();
+        document
+        .getElementById(
+            "productForm"
+        )
+        .reset();
 
-        await renderProducts();
+
+        document
+        .getElementById(
+            "imagePreview"
+        )
+        .style.display="none";
+
+
+        document
+        .getElementById(
+            "videoPreview"
+        )
+        .style.display="none";
+
+
+        document
+        .getElementById(
+            "imageName"
+        )
+        .textContent="";
+
+
+        document
+        .getElementById(
+            "videoName"
+        )
+        .textContent="";
+
+
+        renderProducts();
 
     }
 );
 
 
 /* =====================================================
-RESET FORM
-===================================================== */
-
-function resetForm(){
-
-    editingId=null;
-
-
-    document
-    .getElementById(
-        "productForm"
-    )
-    .reset();
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display=
-        "none";
-
-
-    document
-    .getElementById(
-        "videoPreview"
-    )
-    .style.display=
-        "none";
-
-
-    document
-    .getElementById(
-        "imageName"
-    )
-    .textContent="";
-
-
-    document
-    .getElementById(
-        "videoName"
-    )
-    .textContent="";
-
-
-    document
-    .getElementById(
-        "cancelEdit"
-    )
-    .classList.add(
-        "hidden"
-    );
-
-
-    document
-    .getElementById(
-        "formTitle"
-    )
-    .textContent=
-        "➕ Tambah Produk Baru";
-
-}
-
-
-/* =====================================================
 RENDER PRODUCTS
 ===================================================== */
 
-async function renderProducts(){
+function renderProducts(){
 
-    const container =
+    const container=
         document.getElementById(
             "productList"
         );
 
 
-    const products =
+    const products=
         JSON.parse(
             localStorage.getItem(
                 "products"
@@ -1705,12 +1374,17 @@ async function renderProducts(){
         );
 
 
-    if(products.length===0){
+    if(
+        products.length===0
+    ){
 
-        container.innerHTML=`
-            <div class="empty">
-                📦 Belum ada produk.
-            </div>
+        container.innerHTML=
+        `
+        <div class="empty">
+
+            📦 Belum ada produk.
+
+        </div>
         `;
 
         return;
@@ -1718,73 +1392,25 @@ async function renderProducts(){
     }
 
 
-    container.innerHTML="";
+    container.innerHTML=
 
+    products.map(
+        product=>`
 
-    for(const product of products){
+        <div class="product">
 
-        let imageURL="";
-
-
-        if(product.imageId){
-
-            const media =
-                await getMedia(
-                    product.imageId
-                );
-
-
-            if(media){
-
-                imageURL =
-                    URL.createObjectURL(
-                        media.blob
-                    );
-
-            }
-
-        }
-
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className="product";
-
-
-        card.innerHTML=`
-
-            ${
-                imageURL
-                ?
-                `
-                <img
-                    src="${imageURL}"
-                >
-                `
-                :
-                `
-                <div style="
-                    height:230px;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    background:#eaf7ff;
-                    color:#64748b;
-                ">
-                    📷 Foto tidak tersedia
-                </div>
-                `
-            }
+            <img
+                src="${product.image || 'https://via.placeholder.com/600x400?text=No+Image'}"
+                onerror="
+                this.src='https://via.placeholder.com/600x400?text=No+Image'
+                "
+            >
 
 
             <div class="product-body">
 
                 <h3>
-                    ${escapeHTML(product.name)}
+                    ${product.name}
                 </h3>
 
 
@@ -1793,41 +1419,25 @@ async function renderProducts(){
                 </div>
 
 
-                <div class="
-                    stock-badge
-                    ${
-                        product.stock<=0
-                        ?
-                        "out-of-stock"
-                        :
-                        ""
-                    }
-                ">
-
-                    ${
-                        product.stock>0
-                        ?
-                        "Stok: "+product.stock
-                        :
-                        "Stok Habis"
-                    }
-
+                <div class="stock-badge ${product.stock <= 0 ? 'out-of-stock' : ''}">
+                    ${product.stock > 0 ? 'Stok: ' + product.stock : 'Stok Habis'}
                 </div>
 
 
                 <p class="product-desc">
-
-                    ${escapeHTML(product.desc)}
-
+                    ${product.desc}
                 </p>
 
 
-                <div id="
-                    video-${product.id}
-                "></div>
+                ${product.video ? `
+                <video controls>
+                    <source src="${product.video}">
+                    Browser tidak mendukung video.
+                </video>
+                ` : ''}
 
 
-                <br>
+                <br><br>
 
 
                 <button
@@ -1836,9 +1446,10 @@ async function renderProducts(){
                         editProduct(
                             ${product.id}
                         )
-                    "
-                >
+                    ">
+
                     ✏️ Edit
+
                 </button>
 
 
@@ -1848,65 +1459,18 @@ async function renderProducts(){
                         deleteProduct(
                             ${product.id}
                         )
-                    "
-                >
+                    ">
+
                     🗑️ Hapus
+
                 </button>
 
             </div>
 
-        `;
+        </div>
 
-
-        container.appendChild(
-            card
-        );
-
-
-        if(product.videoId){
-
-            try{
-
-                const media =
-                    await getMedia(
-                        product.videoId
-                    );
-
-
-                if(media){
-
-                    const videoURL =
-                        URL.createObjectURL(
-                            media.blob
-                        );
-
-
-                    const videoContainer =
-                        document.getElementById(
-                            "video-"+product.id
-                        );
-
-
-                    videoContainer.innerHTML=`
-
-                        <video controls>
-
-                            <source
-                                src="${videoURL}"
-                                type="${media.type}"
-                            >
-
-                        </video>
-
-                    `;
-
-                }
-
-            }catch(e){}
-
-        }
-
-    }
+        `
+    ).join("");
 
 }
 
@@ -1917,7 +1481,7 @@ EDIT PRODUCT
 
 function editProduct(id){
 
-    const products =
+    const products=
         JSON.parse(
             localStorage.getItem(
                 "products"
@@ -1925,7 +1489,7 @@ function editProduct(id){
         );
 
 
-    const product =
+    const product=
         products.find(
             p=>p.id===id
         );
@@ -1955,7 +1519,7 @@ function editProduct(id){
         "productStock"
     )
     .value=
-        product.stock;
+        product.stock !== undefined ? product.stock : 0;
 
 
     document
@@ -1971,6 +1535,15 @@ function editProduct(id){
 
     document
     .getElementById(
+        "productImage"
+    )
+    .removeAttribute(
+        "required"
+    );
+
+
+    document
+    .getElementById(
         "cancelEdit"
     )
     .classList.remove(
@@ -1982,8 +1555,7 @@ function editProduct(id){
     .getElementById(
         "formTitle"
     )
-    .textContent=
-        "✏️ Edit Produk";
+    .textContent="✏️ Edit Produk";
 
 
     window.scrollTo({
@@ -2003,7 +1575,56 @@ CANCEL EDIT
 
 function cancelEdit(){
 
-    resetForm();
+    editingId=null;
+
+
+    document
+    .getElementById(
+        "productForm"
+    )
+    .reset();
+
+
+    document
+    .getElementById(
+        "cancelEdit"
+    )
+    .classList.add(
+        "hidden"
+    );
+
+
+    document
+    .getElementById(
+        "formTitle"
+    )
+    .textContent="➕ Tambah Produk Baru";
+
+
+    document
+    .getElementById(
+        "imagePreview"
+    )
+    .style.display=
+        "none";
+
+
+    document
+    .getElementById(
+        "videoPreview"
+    )
+    .style.display=
+        "none";
+
+
+    document
+    .getElementById(
+        "productImage"
+    )
+    .setAttribute(
+        "required",
+        ""
+    );
 
 }
 
@@ -2012,24 +1633,7 @@ function cancelEdit(){
 DELETE PRODUCT
 ===================================================== */
 
-async function deleteProduct(id){
-
-    const products =
-        JSON.parse(
-            localStorage.getItem(
-                "products"
-            ) || "[]"
-        );
-
-
-    const product =
-        products.find(
-            p=>p.id===id
-        );
-
-
-    if(!product)return;
-
+function deleteProduct(id){
 
     if(
         !confirm(
@@ -2042,25 +1646,15 @@ async function deleteProduct(id){
     }
 
 
-    if(product.imageId){
-
-        await deleteMedia(
-            product.imageId
+    let products=
+        JSON.parse(
+            localStorage.getItem(
+                "products"
+            ) || "[]"
         );
 
-    }
 
-
-    if(product.videoId){
-
-        await deleteMedia(
-            product.videoId
-        );
-
-    }
-
-
-    const newProducts =
+    products=
         products.filter(
             p=>p.id!==id
         );
@@ -2069,23 +1663,18 @@ async function deleteProduct(id){
     localStorage.setItem(
         "products",
         JSON.stringify(
-            newProducts
+            products
         )
     );
 
 
-    await renderProducts();
-
-
-    alert(
-        "Produk berhasil dihapus!"
-    );
+    renderProducts();
 
 }
 
 
 /* =====================================================
-STATUS
+ORDER STATUS
 ===================================================== */
 
 const statuses=[
@@ -2101,25 +1690,51 @@ const statuses=[
 ];
 
 
+/* =====================================================
+GET STATUS CLASS
+===================================================== */
+
 function statusClass(status){
 
-    if(status==="Sudah Dibayar")
+    if(
+        status==="Sudah Dibayar"
+    ){
+
         return "status-paid";
 
-    if(status==="Sedang Dikemas")
+    }
+
+
+    if(
+        status==="Sedang Dikemas"
+    ){
+
         return "status-packing";
 
-    if(status==="Sudah Dikirim")
+    }
+
+
+    if(
+        status==="Sudah Dikirim"
+    ){
+
         return "status-shipped";
+
+    }
+
 
     return "status-unpaid";
 
 }
 
 
+/* =====================================================
+STATUS NUMBER
+===================================================== */
+
 function statusNumber(status){
 
-    const map={
+    const list={
 
         "Belum Dibayar":1,
 
@@ -2132,46 +1747,7 @@ function statusNumber(status){
     };
 
 
-    return map[status] || 1;
-
-}
-
-
-function stepClass(current,step){
-
-    if(step<current)
-        return "done";
-
-    if(step===current)
-        return "active";
-
-    return "";
-
-}
-
-
-function lineClass(current,step){
-
-    if(current>=step)
-        return "done";
-
-    return "";
-
-}
-
-
-function statusIcon(status){
-
-    if(status==="Sudah Dibayar")
-        return "✅";
-
-    if(status==="Sedang Dikemas")
-        return "📦";
-
-    if(status==="Sudah Dikirim")
-        return "🚚";
-
-    return "💰";
+    return list[status]||1;
 
 }
 
@@ -2182,13 +1758,13 @@ RENDER ORDERS
 
 function renderOrders(){
 
-    const container =
+    const container=
         document.getElementById(
             "orderList"
         );
 
 
-    const orders =
+    const orders=
         JSON.parse(
             localStorage.getItem(
                 "orders"
@@ -2196,12 +1772,17 @@ function renderOrders(){
         );
 
 
-    if(orders.length===0){
+    if(
+        orders.length===0
+    ){
 
-        container.innerHTML=`
-            <div class="empty">
-                📦 Belum ada pesanan customer.
-            </div>
+        container.innerHTML=
+        `
+        <div class="empty">
+
+            📦 Belum ada pesanan dari customer.
+
+        </div>
         `;
 
         return;
@@ -2209,13 +1790,15 @@ function renderOrders(){
     }
 
 
-    container.innerHTML =
-        orders
-        .slice()
-        .reverse()
-        .map(order=>{
+    container.innerHTML=
 
-            const current =
+    orders
+    .slice()
+    .reverse()
+    .map(
+        order=>{
+
+            const current=
                 statusNumber(
                     order.status
                 );
@@ -2223,237 +1806,351 @@ function renderOrders(){
 
             return`
 
-                <div class="order">
+            <div class="order">
 
-                    <h3>
-                        📦 ${escapeHTML(
-                            order.productName
+                <h3>
+                    📦 ${order.productName}
+                </h3>
+
+
+                <p>
+
+                    <b>Customer:</b>
+                    ${order.customer}
+
+                </p>
+
+
+                <p>
+
+                    <b>Jumlah:</b>
+                    ${order.quantity||1}
+
+                </p>
+
+
+                <p>
+
+                    <b>Harga:</b>
+                    ${rupiah(
+                        order.price
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <b>Total:</b>
+                    ${rupiah(
+                        order.total||
+                        order.price
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    <b>Pembayaran:</b>
+
+                    ${order.payment||"-"}
+
+                </p>
+
+
+                <p>
+
+                    <b>Tanggal:</b>
+                    ${order.date}
+
+                </p>
+
+
+                <p style="margin-top:12px">
+
+                    Status saat ini:
+
+                    <span
+                        class="
+                        status
+                        ${statusClass(
+                            order.status
                         )}
-                    </h3>
+                        ">
 
-
-                    <p>
-                        <b>Customer:</b>
-                        ${escapeHTML(
-                            order.customer
+                        ${getIcon(
+                            order.status
                         )}
-                    </p>
+
+                        ${order.status}
+
+                    </span>
+
+                </p>
 
 
-                    <p>
-                        <b>Jumlah:</b>
-                        ${order.quantity}
-                    </p>
+
+                <!-- =================
+                TRACKING
+                ================= -->
+
+                <div class="tracking">
 
 
-                    <p>
-                        <b>Harga:</b>
-                        ${rupiah(
-                            order.price
+                    <div class="
+                        step
+                        ${stepClass(
+                            current,
+                            1
                         )}
-                    </p>
+                    ">
 
-
-                    <p>
-                        <b>Total:</b>
-                        ${rupiah(
-                            order.total
-                        )}
-                    </p>
-
-
-                    <p>
-                        <b>Pembayaran:</b>
-                        ${escapeHTML(
-                            order.payment
-                        )}
-                    </p>
-
-
-                    <p>
-                        <b>Tanggal:</b>
-                        ${order.date}
-                    </p>
-
-
-                    <p>
-
-                        <b>Status:</b>
-
-                        <span class="
-                            status
-                            ${statusClass(
-                                order.status
-                            )}
-                        ">
-
-                            ${statusIcon(
-                                order.status
-                            )}
-
-                            ${order.status}
-
-                        </span>
-
-                    </p>
-
-
-                    <!-- TRACKING -->
-
-                    <div class="tracking">
-
-                        <div class="
-                            step
-                            ${stepClass(
-                                current,
-                                1
-                            )}
-                        ">
-
-                            <div class="circle">
-                                💰
-                            </div>
-
-                            <small>
-                                Belum<br>Dibayar
-                            </small>
-
+                        <div class="circle">
+                            💰
                         </div>
 
-
-                        <div class="
-                            line
-                            ${lineClass(
-                                current,
-                                2
-                            )}
-                        ">
-                        </div>
-
-
-                        <div class="
-                            step
-                            ${stepClass(
-                                current,
-                                2
-                            )}
-                        ">
-
-                            <div class="circle">
-                                ✅
-                            </div>
-
-                            <small>
-                                Sudah<br>Dibayar
-                            </small>
-
-                        </div>
-
-
-                        <div class="
-                            line
-                            ${lineClass(
-                                current,
-                                3
-                            )}
-                        ">
-                        </div>
-
-
-                        <div class="
-                            step
-                            ${stepClass(
-                                current,
-                                3
-                            )}
-                        ">
-
-                            <div class="circle">
-                                📦
-                            </div>
-
-                            <small>
-                                Sedang<br>Dikemas
-                            </small>
-
-                        </div>
-
-
-                        <div class="
-                            line
-                            ${lineClass(
-                                current,
-                                4
-                            )}
-                        ">
-                        </div>
-
-
-                        <div class="
-                            step
-                            ${stepClass(
-                                current,
-                                4
-                            )}
-                        ">
-
-                            <div class="circle">
-                                🚚
-                            </div>
-
-                            <small>
-                                Sudah<br>Dikirim
-                            </small>
-
-                        </div>
+                        <small>
+                            Belum<br>Dibayar
+                        </small>
 
                     </div>
 
 
-                    <label>
-                        Ubah Status Pesanan:
-                    </label>
+                    <div class="
+                        line
+                        ${lineClass(
+                            current,
+                            2
+                        )}
+                    ">
+                    </div>
 
 
-                    <select
-                        onchange="
-                            changeStatus(
-                                ${order.id},
-                                this.value
-                            )
-                        "
-                    >
+                    <div class="
+                        step
+                        ${stepClass(
+                            current,
+                            2
+                        )}
+                    ">
 
-                        ${
-                            statuses.map(
-                                status=>`
+                        <div class="circle">
+                            ✅
+                        </div>
 
-                                <option
-                                    value="${status}"
-                                    ${
-                                        order.status===
-                                        status
-                                        ?
-                                        "selected"
-                                        :
-                                        ""
-                                    }
-                                >
-                                    ${status}
-                                </option>
+                        <small>
+                            Sudah<br>Dibayar
+                        </small>
 
-                                `
-                            ).join("")
-                        }
+                    </div>
 
-                    </select>
+
+                    <div class="
+                        line
+                        ${lineClass(
+                            current,
+                            3
+                        )}
+                    ">
+                    </div>
+
+
+                    <div class="
+                        step
+                        ${stepClass(
+                            current,
+                            3
+                        )}
+                    ">
+
+                        <div class="circle">
+                            📦
+                        </div>
+
+                        <small>
+                            Sedang<br>Dikemas
+                        </small>
+
+                    </div>
+
+
+                    <div class="
+                        line
+                        ${lineClass(
+                            current,
+                            4
+                        )}
+                    ">
+                    </div>
+
+
+                    <div class="
+                        step
+                        ${stepClass(
+                            current,
+                            4
+                        )}
+                    ">
+
+                        <div class="circle">
+                            🚚
+                        </div>
+
+                        <small>
+                            Sudah<br>Dikirim
+                        </small>
+
+                    </div>
 
 
                 </div>
 
+
+
+                <!-- =================
+                CHANGE STATUS
+                ================= -->
+
+                <label>
+
+                    <b>
+                        Ubah Status Pesanan:
+                    </b>
+
+                </label>
+
+
+                <select
+                    onchange="
+                    changeStatus(
+                        ${order.id},
+                        this.value
+                    )
+                    ">
+
+
+                    ${statuses.map(
+                        status=>`
+
+                        <option
+                            value="${status}"
+                            ${
+                                order.status===
+                                status
+                                ?
+                                "selected"
+                                :
+                                ""
+                            }
+                        >
+
+                            ${status}
+
+                        </option>
+
+                        `
+                    ).join("")}
+
+
+                </select>
+
+
+            </div>
+
             `;
 
-        }).join("");
+        }
+    ).join("");
+
+}
+
+
+/* =====================================================
+STEP CLASS
+===================================================== */
+
+function stepClass(
+    current,
+    step
+){
+
+    if(step<current){
+
+        return "done";
+
+    }
+
+
+    if(step===current){
+
+        return "active";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+LINE CLASS
+===================================================== */
+
+function lineClass(
+    current,
+    step
+){
+
+    if(
+        current>=step
+    ){
+
+        return "done";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+ICON
+===================================================== */
+
+function getIcon(status){
+
+    if(
+        status==="Sudah Dibayar"
+    ){
+
+        return "✅";
+
+    }
+
+
+    if(
+        status==="Sedang Dikemas"
+    ){
+
+        return "📦";
+
+    }
+
+
+    if(
+        status==="Sudah Dikirim"
+    ){
+
+        return "🚚";
+
+    }
+
+
+    return "💰";
 
 }
 
@@ -2467,7 +2164,7 @@ function changeStatus(
     status
 ){
 
-    let orders =
+    let orders=
         JSON.parse(
             localStorage.getItem(
                 "orders"
@@ -2475,7 +2172,7 @@ function changeStatus(
         );
 
 
-    const order =
+    const order=
         orders.find(
             o=>o.id===id
         );
@@ -2507,75 +2204,34 @@ function changeStatus(
 
 
 /* =====================================================
-ESCAPE HTML
+LOGOUT
 ===================================================== */
 
-function escapeHTML(text){
+function logout(){
 
-    return String(text || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    localStorage.removeItem(
+        "loggedUser"
+    );
+
+    localStorage.removeItem(
+        "loggedRole"
+    );
+
+
+    location.href=
+        "index.html";
 
 }
 
 
 /* =====================================================
-STORAGE CHANGE
+LOAD
 ===================================================== */
 
-window.addEventListener(
-    "storage",
-    function(e){
+renderProducts();
 
-        if(
-            e.key==="products" ||
-            e.key==="orders"
-        ){
+renderOrders();
 
-            renderProducts();
-
-            renderOrders();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-INIT
-===================================================== */
-
-async function init(){
-
-    try{
-
-        await openDatabase();
-
-    }catch(e){
-
-        alert(
-            "IndexedDB tidak tersedia. Gunakan Chrome/Edge melalui Live Server."
-        );
-
-        return;
-
-    }
-
-
-    checkAdmin();
-
-    await renderProducts();
-
-    renderOrders();
-
-}
-
-
-init();
 
 </script>
 

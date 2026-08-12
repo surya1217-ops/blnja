@@ -628,7 +628,7 @@ const defaultProducts = [
     }
 ];
 
-/* STORAGE INITIALIZATION */
+/* INITIALIZATION */
 if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify(defaultProducts));
 }
@@ -636,7 +636,6 @@ if (!localStorage.getItem("orders")) {
     localStorage.setItem("orders", JSON.stringify([]));
 }
 
-/* FORMAT CURRENCY */
 function rupiah(number) {
     return new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -645,7 +644,7 @@ function rupiah(number) {
     }).format(number);
 }
 
-/* LOGIN */
+/* LOGIN SYSTEM */
 function login() {
     const role = document.getElementById("role").value;
     const username = document.getElementById("username").value.trim();
@@ -702,7 +701,7 @@ function logout() {
     location.reload();
 }
 
-/* CART MANAGEMENT */
+/* CART & BUY LOGIC */
 function getCartKey() {
     return "cart_" + localStorage.getItem("loggedUser");
 }
@@ -788,7 +787,7 @@ function renderProducts() {
     `).join("");
 }
 
-/* MODAL CONTROL */
+/* MODALS */
 function openCart() {
     renderCart();
     document.getElementById("cartModal").classList.remove("hidden");
@@ -850,7 +849,7 @@ function removeFromCart(id) {
     updateCartCount();
 }
 
-/* CHECKOUT PROCESS */
+/* CHECKOUT & ORDER HANDLING */
 function openCheckout() {
     const cart = getCart();
     if (cart.length === 0) {
@@ -910,7 +909,7 @@ function processCheckout() {
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
-    saveCart([]); // Reset keranjang setelah dibeli
+    saveCart([]); // Mengosongkan keranjang setelah beli
     closeCheckout();
     updateCartCount();
     renderOrders();
@@ -1014,7 +1013,7 @@ function getStatusIcon(status) {
     }
 }
 
-/* SESSION INITIALIZATION */
+/* SESSION CHECK */
 const loggedUser = localStorage.getItem("loggedUser");
 const loggedRole = localStorage.getItem("loggedRole");
 
@@ -1027,5 +1026,6 @@ if (loggedUser && loggedRole === "customer") {
     document.getElementById("app").classList.add("hidden");
 }
 </script>
+
 </body>
 </html>

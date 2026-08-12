@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Admin - GadgetStore Pro</title>
 
@@ -28,9 +31,11 @@ header{
         #075da8,
         #5ed5ff
     );
+
     color:white;
     padding:25px;
     text-align:center;
+
     box-shadow:0 5px 20px #0002;
 }
 
@@ -54,8 +59,11 @@ header p{
     border-radius:18px;
     padding:25px;
     margin-bottom:25px;
+
     border:1px solid #d8edff;
-    box-shadow:0 8px 25px #0878c522;
+
+    box-shadow:
+        0 8px 25px #0878c522;
 }
 
 h2{
@@ -66,45 +74,63 @@ h2{
 input,
 textarea,
 select{
+
     width:100%;
+
     padding:13px;
+
     border:1px solid #cbd5e1;
+
     border-radius:10px;
+
     margin:7px 0 15px;
+
     outline:none;
+
 }
 
 input:focus,
 textarea:focus,
 select:focus{
+
     border-color:#0878d1;
+
 }
 
 textarea{
+
     min-height:100px;
+
     resize:vertical;
+
 }
 
 button{
+
     border:0;
+
     padding:12px 18px;
+
     border-radius:10px;
+
     cursor:pointer;
+
     font-weight:bold;
+
     color:white;
+
     background:#0878d1;
+
     margin:3px;
+
     transition:.2s;
+
 }
 
 button:hover{
-    transform:translateY(-2px);
-}
 
-button:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-    transform:none;
+    transform:translateY(-2px);
+
 }
 
 .success{
@@ -124,281 +150,389 @@ button:disabled{
 }
 
 .topbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:10px;
+
     flex-wrap:wrap;
+
 }
 
 .product-grid{
+
     display:grid;
-    grid-template-columns:repeat(
+
+    grid-template-columns:
+    repeat(
         auto-fit,
         minmax(270px,1fr)
     );
+
     gap:20px;
+
 }
 
 .product{
+
     border:1px solid #d9ecfa;
+
     border-radius:15px;
+
     overflow:hidden;
+
     background:white;
+
 }
 
 .product img{
+
     width:100%;
+
     height:190px;
+
     object-fit:cover;
-    background:#e2e8f0;
+
 }
 
 .product-body{
+
     padding:16px;
+
 }
 
 .product-body h3{
+
     margin-bottom:7px;
+
 }
 
 .price{
+
     color:#0878d1;
+
     font-size:20px;
+
     font-weight:bold;
+
     margin:8px 0 4px;
+
 }
 
 .stock-badge{
+
     display:inline-block;
+
     padding:4px 10px;
+
     border-radius:6px;
+
     font-size:12px;
+
     font-weight:bold;
+
     margin-bottom:10px;
+
     background:#e0f2fe;
+
     color:#0369a1;
+
 }
 
 .stock-badge.out-of-stock{
+
     background:#fee2e2;
+
     color:#b91c1c;
+
 }
 
 .product-desc{
+
     color:#64748b;
+
     line-height:1.5;
+
 }
 
 .product video{
+
     width:100%;
+
     margin-top:12px;
+
     border-radius:8px;
+
     background:#000;
+
 }
 
 .order{
+
     border:1px solid #dcebf5;
+
     border-radius:15px;
+
     padding:18px;
+
     margin:12px 0;
+
     background:#fbfdff;
+
 }
 
 .order h3{
+
     color:#075da8;
+
     margin-bottom:10px;
+
 }
 
 .order p{
+
     margin:7px 0;
+
 }
 
 .order select{
+
     max-width:350px;
+
     margin-top:10px;
+
 }
 
 .status{
+
     display:inline-block;
+
     padding:7px 12px;
+
     border-radius:20px;
+
     font-weight:bold;
+
     font-size:13px;
+
 }
 
 .status-unpaid{
+
     background:#fff7ed;
+
     color:#c2410c;
+
 }
 
 .status-paid{
+
     background:#dcfce7;
+
     color:#15803d;
+
 }
 
 .status-packing{
+
     background:#dbeafe;
+
     color:#1d4ed8;
+
 }
 
 .status-shipped{
+
     background:#ede9fe;
+
     color:#6d28d9;
+
 }
 
 .tracking{
+
     display:flex;
+
     align-items:center;
+
     margin:20px 0;
+
+    overflow-x:auto;
+
 }
 
 .step{
+
     text-align:center;
+
     min-width:80px;
+
     color:#94a3b8;
+
 }
 
 .circle{
+
     width:40px;
+
     height:40px;
+
     margin:auto;
+
     border-radius:50%;
+
     background:#e2e8f0;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
 
 .step.active{
+
     color:#0878d1;
+
     font-weight:bold;
+
 }
 
 .step.active .circle{
+
     background:#0878d1;
+
     color:white;
+
 }
 
 .step.done{
+
     color:#08a66a;
+
     font-weight:bold;
+
 }
 
 .step.done .circle{
+
     background:#08a66a;
+
     color:white;
+
 }
 
 .line{
+
     height:4px;
+
     background:#e2e8f0;
+
     flex:1;
+
     max-width:80px;
+
+    min-width:30px;
+
 }
 
 .line.done{
+
     background:#08a66a;
+
 }
 
 .step small{
+
     display:block;
+
     margin-top:6px;
+
     font-size:10px;
+
 }
 
 .empty{
+
     text-align:center;
+
     padding:30px;
+
     color:#64748b;
+
 }
 
 .hidden{
+
     display:none!important;
+
 }
 
 .upload-box{
+
     border:2px dashed #9bd5f5;
+
     background:#f4fbff;
+
     padding:18px;
+
     border-radius:12px;
+
     margin-bottom:15px;
+
 }
 
 .upload-box label{
+
     font-weight:bold;
+
     color:#075da8;
+
 }
 
 .preview{
+
     display:none;
+
     margin-top:10px;
-    max-width:300px;
-    max-height:200px;
+
+    max-width:250px;
+
+    max-height:180px;
+
     border-radius:10px;
+
 }
 
 .file-name{
+
     margin-top:8px;
+
     color:#64748b;
+
     font-size:13px;
-}
 
-.info{
-    margin-top:10px;
-    padding:12px;
-    border-radius:10px;
-    background:#e0f2fe;
-    color:#075da8;
-    font-size:13px;
-    line-height:1.6;
-}
-
-.progress-box{
-    display:none;
-    margin:15px 0;
-}
-
-.progress-bg{
-    width:100%;
-    height:14px;
-    background:#e2e8f0;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress{
-    width:0%;
-    height:100%;
-    background:#0878d1;
-    transition:.2s;
-}
-
-.progress-text{
-    margin-top:7px;
-    font-size:13px;
-    color:#475569;
 }
 
 footer{
+
     text-align:center;
+
     padding:25px;
+
     color:#64748b;
+
 }
 
 @media(max-width:600px){
 
     header h1{
         font-size:24px;
-    }
-
-    .tracking{
-        overflow-x:auto;
-    }
-
-    .step{
-        min-width:65px;
     }
 
 }
@@ -412,13 +546,13 @@ footer{
 
 <header>
 
-    <h1>
-        GadgetStore Management System
-    </h1>
+<h1>
+GadgetStore Management System
+</h1>
 
-    <p>
-        Administrator Dashboard
-    </p>
+<p>
+Administrator Dashboard
+</p>
 
 </header>
 
@@ -426,539 +560,325 @@ footer{
 <div class="container">
 
 
-<!-- =====================================================
-ADMIN
-===================================================== -->
-
 <div class="card">
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div>
+<div>
 
-            <h2>
-                ⚙️ Panel Administrator
-            </h2>
+<h2>
+⚙️ Panel Administrator
+</h2>
 
-            <p>
-                Login sebagai:
-                <b id="adminName">admin</b>
-            </p>
+<p>
 
-        </div>
+Login sebagai:
 
-        <div>
+<b id="adminName">
+-
+</b>
 
-            <button
-                class="back"
-                onclick="location.href='index.html'">
+</p>
 
-                🛍️ Halaman Customer
+</div>
 
-            </button>
+<div>
 
-            <button
-                class="delete"
-                onclick="logout()">
+<button
+class="back"
+onclick="location.href='index.html'">
 
-                Keluar
+🛍️ Customer
 
-            </button>
+</button>
 
-        </div>
+<button
+class="delete"
+onclick="logout()">
 
-    </div>
+Keluar
+
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 
-<!-- =====================================================
-FORM PRODUK
-===================================================== -->
+<!-- =================================================
+PRODUK
+================================================= -->
 
 <div class="card">
 
-    <h2 id="formTitle">
-        ➕ Tambah Produk Baru
-    </h2>
+<h2 id="formTitle">
+➕ Tambah Produk Baru
+</h2>
 
 
-    <form id="productForm">
+<form id="productForm">
 
 
-        <label>
-            Nama Produk
-        </label>
+<label>
+Nama Produk
+</label>
 
-        <input
-            type="text"
-            id="productName"
-            placeholder="Contoh: iPhone 15 Pro"
-            required
-        >
-
-
-        <label>
-            Harga Produk (Rp)
-        </label>
-
-        <input
-            type="number"
-            id="productPrice"
-            placeholder="Contoh: 12000000"
-            min="0"
-            required
-        >
+<input
+type="text"
+id="productName"
+required
+placeholder="Nama produk">
 
 
-        <label>
-            Stok Barang
-        </label>
+<label>
+Harga Produk
+</label>
 
-        <input
-            type="number"
-            id="productStock"
-            placeholder="Contoh: 15"
-            min="0"
-            required
-        >
-
-
-        <label>
-            Deskripsi Produk
-        </label>
-
-        <textarea
-            id="productDesc"
-            placeholder="Masukkan spesifikasi produk..."
-            required
-        ></textarea>
+<input
+type="number"
+id="productPrice"
+required
+min="0"
+placeholder="Harga">
 
 
-        <!-- FOTO -->
+<label>
+Stok
+</label>
 
-        <div class="upload-box">
-
-            <label>
-                📷 Upload Foto Produk
-            </label>
-
-            <input
-                type="file"
-                id="productImage"
-                accept="image/*"
-                required
-            >
-
-            <div
-                id="imageName"
-                class="file-name">
-            </div>
-
-            <img
-                id="imagePreview"
-                class="preview"
-            >
-
-            <div class="info">
-
-                📷 Foto juga disimpan di IndexedDB.
-
-                <br>
-
-                Format:
-                JPG, JPEG, PNG, WEBP
-
-            </div>
-
-        </div>
+<input
+type="number"
+id="productStock"
+required
+min="0"
+placeholder="Jumlah stok">
 
 
-        <!-- VIDEO -->
+<label>
+Deskripsi
+</label>
 
-        <div class="upload-box">
-
-            <label>
-                🎬 Upload Video Produk
-            </label>
-
-            <input
-                type="file"
-                id="productVideo"
-                accept="video/*"
-            >
-
-            <div
-                id="videoName"
-                class="file-name">
-            </div>
-
-            <video
-                id="videoPreview"
-                class="preview"
-                controls>
-            </video>
-
-            <div class="info">
-
-                🎬 Maksimal video:
-                <b>500 MB</b>
-
-                <br>
-
-                💾 Video tidak disimpan sebagai Base64.
-
-                <br>
-
-                📦 Video disimpan langsung di IndexedDB.
-
-            </div>
-
-        </div>
+<textarea
+id="productDesc"
+required
+placeholder="Deskripsi produk">
+</textarea>
 
 
-        <!-- PROGRESS -->
+<!-- FOTO -->
 
-        <div
-            id="progressBox"
-            class="progress-box">
+<div class="upload-box">
 
-            <div class="progress-bg">
+<label>
+📷 Upload Foto Produk
+</label>
 
-                <div
-                    id="progress"
-                    class="progress">
-                </div>
+<input
+type="file"
+id="productImage"
+accept="image/*"
+required>
 
-            </div>
+<div
+id="imageName"
+class="file-name">
+</div>
 
-            <div
-                id="progressText"
-                class="progress-text">
-
-                Menyimpan...
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="success"
-            id="saveButton">
-
-            💾 Simpan Produk
-
-        </button>
-
-
-        <button
-            type="button"
-            class="back hidden"
-            id="cancelEdit"
-            onclick="cancelEdit()">
-
-            Batal Edit
-
-        </button>
-
-
-    </form>
+<img
+id="imagePreview"
+class="preview">
 
 </div>
 
 
-<!-- =====================================================
+<!-- VIDEO -->
+
+<div class="upload-box">
+
+<label>
+🎬 Upload Video Produk
+</label>
+
+<p style="
+color:#64748b;
+font-size:13px;
+margin:7px 0 10px;
+">
+
+Video disimpan menggunakan IndexedDB
+agar tidak cepat memenuhi localStorage.
+Video besar lebih baik dikompres terlebih dahulu.
+
+</p>
+
+<input
+type="file"
+id="productVideo"
+accept="video/*">
+
+<div
+id="videoName"
+class="file-name">
+</div>
+
+<video
+id="videoPreview"
+class="preview"
+controls>
+</video>
+
+</div>
+
+
+<button
+type="submit"
+class="success">
+
+💾 Simpan Produk
+
+</button>
+
+
+<button
+type="button"
+id="cancelEdit"
+class="back hidden"
+onclick="cancelEdit()">
+
+Batal Edit
+
+</button>
+
+</form>
+
+</div>
+
+
+<!-- =================================================
 DAFTAR PRODUK
-===================================================== -->
+================================================= -->
 
 <div class="card">
 
-    <h2>
-        📦 Manajemen Produk
-    </h2>
+<h2>
+📦 Manajemen Produk
+</h2>
 
-    <div
-        id="productList"
-        class="product-grid">
-    </div>
+<div
+id="productList"
+class="product-grid">
+</div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =================================================
 PESANAN
-===================================================== -->
+================================================= -->
 
 <div class="card">
 
-    <h2>
-        🚚 Manajemen Status Pesanan
-    </h2>
+<h2>
+🚚 Manajemen Status Pesanan
+</h2>
 
-    <div id="orderList"></div>
+<div id="orderList"></div>
 
 </div>
-
 
 </div>
 
 
 <footer>
 
-    © 2026 GadgetStore Pro —
-    Administrator
+© 2026 GadgetStore Pro — Administrator
 
 </footer>
 
 
 <script>
 
-
 /* =====================================================
-INDEXED DB
+ADMIN LOGIN CHECK
 ===================================================== */
 
-const DB_NAME =
-    "GadgetStoreDatabase";
-
-const DB_VERSION = 1;
-
-const STORE =
-    "productFiles";
-
-let database = null;
-
-
-/* =====================================================
-BUKA DATABASE
-===================================================== */
-
-function openDatabase(){
-
-    return new Promise(
-        (resolve,reject)=>{
-
-            const request =
-                indexedDB.open(
-                    DB_NAME,
-                    DB_VERSION
-                );
-
-
-            request.onupgradeneeded =
-                function(event){
-
-                    const db =
-                        event.target.result;
-
-
-                    if(
-                        !db.objectStoreNames.contains(
-                            STORE
-                        )
-                    ){
-
-                        db.createObjectStore(
-                            STORE,
-                            {
-                                keyPath:"id"
-                            }
-                        );
-
-                    }
-
-                };
-
-
-            request.onsuccess =
-                function(event){
-
-                    database =
-                        event.target.result;
-
-                    resolve(
-                        database
-                    );
-
-                };
-
-
-            request.onerror =
-                function(){
-
-                    reject(
-                        request.error
-                    );
-
-                };
-
-        }
+const role=
+    localStorage.getItem(
+        "loggedRole"
     );
 
-}
+const username=
+    localStorage.getItem(
+        "loggedUser"
+    );
 
 
-/* =====================================================
-SIMPAN FILE
-===================================================== */
-
-function saveFile(
-    id,
-    file
+if(
+    username!=="admin" ||
+    role!=="admin"
 ){
 
-    return new Promise(
-        (resolve,reject)=>{
-
-            const transaction =
-                database.transaction(
-                    STORE,
-                    "readwrite"
-                );
-
-
-            const store =
-                transaction.objectStore(
-                    STORE
-                );
-
-
-            const request =
-                store.put({
-
-                    id:id,
-
-                    blob:file,
-
-                    name:file.name,
-
-                    type:file.type,
-
-                    size:file.size
-
-                });
-
-
-            request.onsuccess =
-                function(){
-
-                    resolve(id);
-
-                };
-
-
-            request.onerror =
-                function(){
-
-                    reject(
-                        request.error
-                    );
-
-                };
-
-        }
+    alert(
+        "Silakan login sebagai admin terlebih dahulu."
     );
+
+    location.href="index.html";
 
 }
 
 
 /* =====================================================
-AMBIL FILE
+ADMIN NAME
 ===================================================== */
 
-function getFile(id){
-
-    return new Promise(
-        (resolve,reject)=>{
-
-            const transaction =
-                database.transaction(
-                    STORE,
-                    "readonly"
-                );
+document
+.getElementById("adminName")
+.textContent=
+    localStorage.getItem(
+        "loggedName"
+    ) || "Administrator";
 
 
-            const store =
-                transaction.objectStore(
-                    STORE
-                );
+/* =====================================================
+STORAGE
+===================================================== */
 
+function getProducts(){
 
-            const request =
-                store.get(id);
-
-
-            request.onsuccess =
-                function(){
-
-                    resolve(
-                        request.result
-                    );
-
-                };
-
-
-            request.onerror =
-                function(){
-
-                    reject(
-                        request.error
-                    );
-
-                };
-
-        }
+    return JSON.parse(
+        localStorage.getItem(
+            "products"
+        ) || "[]"
     );
 
 }
 
+function saveProducts(products){
 
-/* =====================================================
-HAPUS FILE
-===================================================== */
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
 
-function removeFile(id){
+}
 
-    return new Promise(
-        (resolve,reject)=>{
+function getOrders(){
 
-            const transaction =
-                database.transaction(
-                    STORE,
-                    "readwrite"
-                );
+    return JSON.parse(
+        localStorage.getItem(
+            "orders"
+        ) || "[]"
+    );
 
+}
 
-            const store =
-                transaction.objectStore(
-                    STORE
-                );
+function saveOrders(orders){
 
-
-            const request =
-                store.delete(id);
-
-
-            request.onsuccess =
-                function(){
-
-                    resolve();
-
-                };
-
-
-            request.onerror =
-                function(){
-
-                    reject(
-                        request.error
-                    );
-
-                };
-
-        }
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
     );
 
 }
@@ -977,107 +897,128 @@ function rupiah(number){
             currency:"IDR",
             maximumFractionDigits:0
         }
-    ).format(number);
+    ).format(number || 0);
 
 }
 
 
 /* =====================================================
-FORMAT FILE
+INDEXED DB VIDEO
 ===================================================== */
 
-function fileSize(size){
+let db;
+
+const request=
+    indexedDB.open(
+        "GadgetStoreMediaDB",
+        1
+    );
+
+
+request.onupgradeneeded=function(e){
+
+    db=e.target.result;
 
     if(
-        size <
-        1024
+        !db.objectStoreNames.contains(
+            "videos"
+        )
     ){
 
-        return size + " B";
-
-    }
-
-
-    if(
-        size <
-        1024 * 1024
-    ){
-
-        return (
-            size /
-            1024
-        ).toFixed(2)
-        + " KB";
-
-    }
-
-
-    return (
-        size /
-        (1024 * 1024)
-    ).toFixed(2)
-    + " MB";
-
-}
-
-
-/* =====================================================
-ESCAPE HTML
-===================================================== */
-
-function safe(text){
-
-    const div =
-        document.createElement(
-            "div"
+        db.createObjectStore(
+            "videos",
+            {
+                keyPath:"id"
+            }
         );
 
+    }
 
-    div.textContent =
-        text || "";
+};
 
 
-    return div.innerHTML;
+request.onsuccess=function(e){
 
-}
+    db=e.target.result;
+
+    renderProducts();
+
+};
+
+
+request.onerror=function(){
+
+    console.log(
+        "IndexedDB tidak tersedia."
+    );
+
+    renderProducts();
+
+};
 
 
 /* =====================================================
-BASE64 HANYA UNTUK DATA KECIL
+SAVE VIDEO
 ===================================================== */
 
-function imageToBase64(file){
+function saveVideo(file){
 
     return new Promise(
         (resolve,reject)=>{
 
-            const reader =
-                new FileReader();
+            if(!file){
 
+                resolve("");
 
-            reader.onload =
+                return;
+
+            }
+
+            const id=
+                "video_"+Date.now()+
+                "_"+
+                Math.random()
+                .toString(36)
+                .substring(2,8);
+
+            const transaction=
+                db.transaction(
+                    ["videos"],
+                    "readwrite"
+                );
+
+            const store=
+                transaction.objectStore(
+                    "videos"
+                );
+
+            store.put({
+
+                id:id,
+
+                file:file,
+
+                name:file.name,
+
+                type:file.type
+
+            });
+
+            transaction.oncomplete=
                 function(){
 
-                    resolve(
-                        reader.result
-                    );
+                    resolve(id);
 
                 };
 
-
-            reader.onerror =
+            transaction.onerror=
                 function(){
 
                     reject(
-                        reader.error
+                        transaction.error
                     );
 
                 };
-
-
-            reader.readAsDataURL(
-                file
-            );
 
         }
     );
@@ -1086,33 +1027,125 @@ function imageToBase64(file){
 
 
 /* =====================================================
-ID FILE
+GET VIDEO URL
 ===================================================== */
 
-function createFileId(type){
+function getVideoURL(id){
 
-    return (
-        type +
-        "_" +
-        Date.now() +
-        "_" +
-        Math.random()
-        .toString(36)
-        .substring(2)
+    return new Promise(
+        (resolve)=>{
+
+            if(!id || !db){
+
+                resolve("");
+
+                return;
+
+            }
+
+            const transaction=
+                db.transaction(
+                    ["videos"],
+                    "readonly"
+                );
+
+            const store=
+                transaction.objectStore(
+                    "videos"
+                );
+
+            const request=
+                store.get(id);
+
+            request.onsuccess=
+                function(){
+
+                    if(
+                        request.result &&
+                        request.result.file
+                    ){
+
+                        resolve(
+                            URL.createObjectURL(
+                                request.result.file
+                            )
+                        );
+
+                    }else{
+
+                        resolve("");
+
+                    }
+
+                };
+
+            request.onerror=
+                function(){
+
+                    resolve("");
+
+                };
+
+        }
     );
 
 }
 
 
 /* =====================================================
-EDITING
+DELETE VIDEO
 ===================================================== */
 
-let editingId = null;
+function deleteVideo(id){
+
+    if(!id || !db)return;
+
+    const transaction=
+        db.transaction(
+            ["videos"],
+            "readwrite"
+        );
+
+    const store=
+        transaction.objectStore(
+            "videos"
+        );
+
+    store.delete(id);
+
+}
 
 
 /* =====================================================
-PREVIEW FOTO
+IMAGE BASE64
+===================================================== */
+
+function fileToBase64(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const reader=
+                new FileReader();
+
+            reader.onload=
+                ()=>resolve(
+                    reader.result
+                );
+
+            reader.onerror=
+                reject;
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+IMAGE PREVIEW
 ===================================================== */
 
 document
@@ -1121,48 +1154,26 @@ document
     "change",
     function(){
 
-        const file =
-            this.files[0];
+        const file=this.files[0];
 
-
-        if(!file){
-
-            return;
-
-        }
-
+        if(!file)return;
 
         document
-        .getElementById(
-            "imageName"
-        )
-        .textContent =
-            file.name +
-            " (" +
-            fileSize(
-                file.size
-            ) +
-            ")";
+        .getElementById("imageName")
+        .textContent=
+            file.name;
 
-
-        const preview =
-            document
-            .getElementById(
+        const preview=
+            document.getElementById(
                 "imagePreview"
             );
 
-
-        const url =
+        preview.src=
             URL.createObjectURL(
                 file
             );
 
-
-        preview.src =
-            url;
-
-
-        preview.style.display =
+        preview.style.display=
             "block";
 
     }
@@ -1170,7 +1181,7 @@ document
 
 
 /* =====================================================
-PREVIEW VIDEO
+VIDEO PREVIEW
 ===================================================== */
 
 document
@@ -1179,77 +1190,26 @@ document
     "change",
     function(){
 
-        const file =
-            this.files[0];
+        const file=this.files[0];
 
-
-        if(!file){
-
-            return;
-
-        }
-
-
-        const MAX =
-            500 *
-            1024 *
-            1024;
-
-
-        if(
-            file.size >
-            MAX
-        ){
-
-            alert(
-                "Video terlalu besar!\n\n" +
-                "Ukuran: " +
-                fileSize(file.size) +
-                "\n" +
-                "Maksimal: 500 MB"
-            );
-
-
-            this.value =
-                "";
-
-
-            return;
-
-        }
-
+        if(!file)return;
 
         document
-        .getElementById(
-            "videoName"
-        )
-        .textContent =
-            file.name +
-            " (" +
-            fileSize(
-                file.size
-            ) +
-            ")";
+        .getElementById("videoName")
+        .textContent=
+            file.name;
 
-
-        const preview =
-            document
-            .getElementById(
+        const preview=
+            document.getElementById(
                 "videoPreview"
             );
 
-
-        const url =
+        preview.src=
             URL.createObjectURL(
                 file
             );
 
-
-        preview.src =
-            url;
-
-
-        preview.style.display =
+        preview.style.display=
             "block";
 
     }
@@ -1257,316 +1217,116 @@ document
 
 
 /* =====================================================
-PROGRESS
+EDITING
 ===================================================== */
 
-function progress(
-    value,
-    text
-){
-
-    document
-    .getElementById(
-        "progressBox"
-    )
-    .style.display =
-        "block";
-
-
-    document
-    .getElementById(
-        "progress"
-    )
-    .style.width =
-        value + "%";
-
-
-    document
-    .getElementById(
-        "progressText"
-    )
-    .textContent =
-        text;
-
-}
+let editingId=null;
 
 
 /* =====================================================
-SUBMIT
+SUBMIT PRODUCT
 ===================================================== */
 
 document
 .getElementById("productForm")
 .addEventListener(
     "submit",
-    async function(event){
+    async function(e){
 
-        event.preventDefault();
+        e.preventDefault();
 
 
-        const button =
+        const name=
             document
             .getElementById(
-                "saveButton"
+                "productName"
+            )
+            .value
+            .trim();
+
+        const price=
+            Number(
+                document
+                .getElementById(
+                    "productPrice"
+                )
+                .value
             );
 
+        const stock=
+            Number(
+                document
+                .getElementById(
+                    "productStock"
+                )
+                .value
+            );
 
-        button.disabled =
-            true;
+        const desc=
+            document
+            .getElementById(
+                "productDesc"
+            )
+            .value
+            .trim();
+
+        const imageFile=
+            document
+            .getElementById(
+                "productImage"
+            )
+            .files[0];
+
+        const videoFile=
+            document
+            .getElementById(
+                "productVideo"
+            )
+            .files[0];
+
+
+        if(!name){
+
+            alert(
+                "Nama produk wajib diisi."
+            );
+
+            return;
+
+        }
+
+
+        if(price<0 || stock<0){
+
+            alert(
+                "Harga dan stok tidak boleh negatif."
+            );
+
+            return;
+
+        }
+
+
+        let products=
+            getProducts();
 
 
         try{
 
-            const name =
-                document
-                .getElementById(
-                    "productName"
-                )
-                .value
-                .trim();
+            /* =========================================
+            EDIT
+            ========================================= */
 
+            if(editingId){
 
-            const price =
-                Number(
-                    document
-                    .getElementById(
-                        "productPrice"
-                    )
-                    .value
-                );
-
-
-            const stock =
-                Number(
-                    document
-                    .getElementById(
-                        "productStock"
-                    )
-                    .value
-                );
-
-
-            const desc =
-                document
-                .getElementById(
-                    "productDesc"
-                )
-                .value
-                .trim();
-
-
-            const imageFile =
-                document
-                .getElementById(
-                    "productImage"
-                )
-                .files[0];
-
-
-            const videoFile =
-                document
-                .getElementById(
-                    "productVideo"
-                )
-                .files[0];
-
-
-            if(
-                !name ||
-                price < 0 ||
-                stock < 0 ||
-                !desc
-            ){
-
-                alert(
-                    "Mohon lengkapi data produk."
-                );
-
-                return;
-
-            }
-
-
-            if(
-                !editingId &&
-                !imageFile
-            ){
-
-                alert(
-                    "Foto produk wajib dipilih."
-                );
-
-                return;
-
-            }
-
-
-            /* BATAS VIDEO 500 MB */
-
-            if(videoFile){
-
-                const maxVideo =
-                    500 *
-                    1024 *
-                    1024;
-
-
-                if(
-                    videoFile.size >
-                    maxVideo
-                ){
-
-                    alert(
-                        "Ukuran video maksimal 500 MB."
-                    );
-
-                    return;
-
-                }
-
-            }
-
-
-            let products =
-                JSON.parse(
-                    localStorage.getItem(
-                        "products"
-                    ) || "[]"
-                );
-
-
-            /* =================================================
-            TAMBAH PRODUK
-            ================================================= */
-
-            if(!editingId){
-
-                const productId =
-                    Date.now();
-
-
-                let imageId =
-                    "";
-
-
-                let videoId =
-                    "";
-
-
-                /* FOTO */
-
-                if(imageFile){
-
-                    progress(
-                        20,
-                        "Menyimpan foto..."
-                    );
-
-
-                    imageId =
-                        createFileId(
-                            "image"
-                        );
-
-
-                    await saveFile(
-                        imageId,
-                        imageFile
-                    );
-
-                }
-
-
-                /* VIDEO */
-
-                if(videoFile){
-
-                    progress(
-                        55,
-                        "Menyimpan video..."
-                    );
-
-
-                    videoId =
-                        createFileId(
-                            "video"
-                        );
-
-
-                    await saveFile(
-                        videoId,
-                        videoFile
-                    );
-
-                }
-
-
-                progress(
-                    85,
-                    "Menyimpan data produk..."
-                );
-
-
-                const product = {
-
-                    id:productId,
-
-                    name:name,
-
-                    price:price,
-
-                    stock:stock,
-
-                    desc:desc,
-
-                    imageId:imageId,
-
-                    videoId:videoId
-
-                };
-
-
-                products.push(
-                    product
-                );
-
-
-                localStorage.setItem(
-                    "products",
-                    JSON.stringify(
-                        products
-                    )
-                );
-
-
-                progress(
-                    100,
-                    "Produk berhasil disimpan!"
-                );
-
-
-                alert(
-                    "✅ Produk berhasil ditambahkan!"
-                );
-
-            }
-
-
-            /* =================================================
-            EDIT PRODUK
-            ================================================= */
-
-            else{
-
-                const index =
+                const index=
                     products.findIndex(
-                        p =>
-                        p.id ===
-                        editingId
+                        p=>
+                        String(p.id)===
+                        String(editingId)
                     );
 
-
-                if(index === -1){
+                if(index===-1){
 
                     alert(
                         "Produk tidak ditemukan."
@@ -1577,87 +1337,46 @@ document
                 }
 
 
-                const old =
+                const old=
                     products[index];
 
 
-                let imageId =
-                    old.imageId ||
-                    "";
+                let image=
+                    old.image || "";
 
+                let videoId=
+                    old.videoId || "";
 
-                let videoId =
-                    old.videoId ||
-                    "";
-
-
-                /* FOTO BARU */
 
                 if(imageFile){
 
-                    progress(
-                        25,
-                        "Mengganti foto..."
-                    );
-
-
-                    if(imageId){
-
-                        await removeFile(
-                            imageId
+                    image=
+                        await fileToBase64(
+                            imageFile
                         );
-
-                    }
-
-
-                    imageId =
-                        createFileId(
-                            "image"
-                        );
-
-
-                    await saveFile(
-                        imageId,
-                        imageFile
-                    );
 
                 }
 
 
-                /* VIDEO BARU */
-
                 if(videoFile){
-
-                    progress(
-                        60,
-                        "Mengganti video..."
-                    );
-
 
                     if(videoId){
 
-                        await removeFile(
+                        deleteVideo(
                             videoId
                         );
 
                     }
 
-
-                    videoId =
-                        createFileId(
-                            "video"
+                    videoId=
+                        await saveVideo(
+                            videoFile
                         );
-
-
-                    await saveFile(
-                        videoId,
-                        videoFile
-                    );
 
                 }
 
 
-                products[index] = {
+                products[index]={
 
                     ...old,
 
@@ -1669,35 +1388,92 @@ document
 
                     desc:desc,
 
-                    imageId:imageId,
+                    image:image,
 
                     videoId:videoId
 
                 };
 
 
-                progress(
-                    85,
-                    "Menyimpan perubahan..."
+                saveProducts(products);
+
+
+                alert(
+                    "Produk berhasil diperbarui!"
+                );
+
+            }
+
+
+            /* =========================================
+            TAMBAH
+            ========================================= */
+
+            else{
+
+                if(!imageFile){
+
+                    alert(
+                        "Foto produk wajib diupload."
+                    );
+
+                    return;
+
+                }
+
+
+                const image=
+                    await fileToBase64(
+                        imageFile
+                    );
+
+
+                let videoId="";
+
+
+                if(videoFile){
+
+                    videoId=
+                        await saveVideo(
+                            videoFile
+                        );
+
+                }
+
+
+                const product={
+
+                    id:
+                        Date.now()
+                        .toString(),
+
+                    name:name,
+
+                    price:price,
+
+                    stock:stock,
+
+                    desc:desc,
+
+                    image:image,
+
+                    videoId:videoId
+
+                };
+
+
+                products.push(
+                    product
                 );
 
 
-                localStorage.setItem(
-                    "products",
-                    JSON.stringify(
-                        products
-                    )
-                );
-
-
-                progress(
-                    100,
-                    "Perubahan berhasil disimpan!"
+                saveProducts(
+                    products
                 );
 
 
                 alert(
-                    "✅ Produk berhasil diperbarui!"
+                    "Produk berhasil ditambahkan!"
                 );
 
             }
@@ -1705,26 +1481,18 @@ document
 
             resetForm();
 
-            await renderProducts();
+            renderProducts();
 
+        }
+        catch(error){
 
-        }catch(error){
-
-            console.error(
-                error
-            );
-
+            console.error(error);
 
             alert(
-                "❌ Produk gagal disimpan.\n\n" +
-                "Penyebab: " +
-                error.message
+                "Gagal menyimpan produk.\n\n"+
+                "Pastikan browser mendukung "+
+                "IndexedDB dan file tidak rusak."
             );
-
-        }finally{
-
-            button.disabled =
-                false;
 
         }
 
@@ -1738,24 +1506,20 @@ RESET FORM
 
 function resetForm(){
 
-    editingId =
-        null;
-
-
     document
     .getElementById(
         "productForm"
     )
     .reset();
 
+    editingId=null;
 
     document
     .getElementById(
         "formTitle"
     )
-    .textContent =
+    .textContent=
         "➕ Tambah Produk Baru";
-
 
     document
     .getElementById(
@@ -1764,7 +1528,6 @@ function resetForm(){
     .classList.add(
         "hidden"
     );
-
 
     document
     .getElementById(
@@ -1775,92 +1538,59 @@ function resetForm(){
         ""
     );
 
-
     document
     .getElementById(
         "imagePreview"
     )
-    .style.display =
+    .style.display=
         "none";
-
 
     document
     .getElementById(
         "videoPreview"
     )
-    .style.display =
+    .style.display=
         "none";
-
 
     document
     .getElementById(
         "imageName"
     )
-    .textContent =
-        "";
-
+    .textContent="";
 
     document
     .getElementById(
         "videoName"
     )
-    .textContent =
-        "";
-
-
-    document
-    .getElementById(
-        "progressBox"
-    )
-    .style.display =
-        "none";
+    .textContent="";
 
 }
 
 
 /* =====================================================
-BATAL EDIT
-===================================================== */
-
-function cancelEdit(){
-
-    resetForm();
-
-}
-
-
-/* =====================================================
-RENDER PRODUK
+RENDER PRODUCTS
 ===================================================== */
 
 async function renderProducts(){
 
-    const container =
-        document
-        .getElementById(
+    const container=
+        document.getElementById(
             "productList"
         );
 
-
-    const products =
-        JSON.parse(
-            localStorage.getItem(
-                "products"
-            ) || "[]"
-        );
+    const products=
+        getProducts();
 
 
-    if(
-        products.length === 0
-    ){
+    if(products.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
-            <div class="empty">
+        <div class="empty">
 
-                📦 Belum ada produk.
+            📦 Belum ada produk.
 
-            </div>
+        </div>
 
         `;
 
@@ -1869,156 +1599,59 @@ async function renderProducts(){
     }
 
 
-    container.innerHTML =
-        "";
+    const cards=[];
 
 
     for(
-        const product
-        of products
+        const product of products
     ){
 
-        const element =
-            document.createElement(
-                "div"
-            );
-
-
-        element.className =
-            "product";
-
-
-        /* FOTO */
-
-        let imageURL =
-            "https://via.placeholder.com/600x400?text=No+Image";
-
-
-        if(
-            product.imageId
-        ){
-
-            try{
-
-                const file =
-                    await getFile(
-                        product.imageId
-                    );
-
-
-                if(file){
-
-                    imageURL =
-                        URL.createObjectURL(
-                            file.blob
-                        );
-
-                }
-
-            }catch(error){
-
-                console.error(
-                    error
-                );
-
-            }
-
-        }
-
-
-        /* VIDEO */
-
-        let videoHTML =
-            "";
+        let videoURL="";
 
 
         if(
             product.videoId
         ){
 
-            try{
-
-                const file =
-                    await getFile(
-                        product.videoId
-                    );
-
-
-                if(file){
-
-                    const videoURL =
-                        URL.createObjectURL(
-                            file.blob
-                        );
-
-
-                    videoHTML = `
-
-                        <video
-                            controls
-                            preload="metadata">
-
-                            <source
-                                src="${videoURL}"
-                                type="${
-                                    file.type ||
-                                    "video/mp4"
-                                }">
-
-                            Browser tidak mendukung video.
-
-                        </video>
-
-                    `;
-
-                }
-
-            }catch(error){
-
-                console.error(
-                    error
+            videoURL=
+                await getVideoURL(
+                    product.videoId
                 );
-
-            }
 
         }
 
 
-        element.innerHTML = `
+        cards.push(`
+
+        <div class="product">
 
             <img
-                src="${imageURL}"
-                alt="${safe(
-                    product.name
-                )}"
+                src="${
+                    product.image ||
+                    "https://via.placeholder.com/600x400?text=No+Image"
+                }"
+                onerror="
+                this.src='https://via.placeholder.com/600x400?text=No+Image'
+                "
             >
 
 
             <div class="product-body">
 
-
                 <h3>
-
-                    ${safe(
-                        product.name
-                    )}
-
+                    ${escapeHTML(product.name)}
                 </h3>
 
 
                 <div class="price">
-
-                    ${rupiah(
-                        product.price
-                    )}
-
+                    ${rupiah(product.price)}
                 </div>
 
 
                 <div class="
                     stock-badge
                     ${
-                        product.stock <= 0
+                        Number(product.stock)<=0
                         ?
                         "out-of-stock"
                         :
@@ -2027,9 +1660,9 @@ async function renderProducts(){
                 ">
 
                     ${
-                        product.stock > 0
+                        Number(product.stock)>0
                         ?
-                        "Stok: " +
+                        "Stok: "+
                         product.stock
                         :
                         "Stok Habis"
@@ -2040,27 +1673,33 @@ async function renderProducts(){
 
                 <p class="product-desc">
 
-                    ${safe(
-                        product.desc
-                    )}
+                    ${escapeHTML(product.desc)}
 
                 </p>
 
 
                 ${
-                    videoHTML
+                    videoURL
+                    ?
+                    `
+                    <video
+                        controls>
+                        <source
+                            src="${videoURL}">
+                    </video>
+                    `
+                    :
+                    ""
                 }
 
 
-                <br>
+                <br><br>
 
 
                 <button
                     class="edit"
                     onclick="
-                        editProduct(
-                            ${product.id}
-                        )
+                    editProduct('${product.id}')
                     ">
 
                     ✏️ Edit
@@ -2071,96 +1710,94 @@ async function renderProducts(){
                 <button
                     class="delete"
                     onclick="
-                        deleteProduct(
-                            ${product.id}
-                        )
+                    deleteProduct('${product.id}')
                     ">
 
                     🗑️ Hapus
 
                 </button>
 
-
             </div>
 
-        `;
+        </div>
 
-
-        container.appendChild(
-            element
-        );
+        `);
 
     }
+
+
+    container.innerHTML=
+        cards.join("");
 
 }
 
 
 /* =====================================================
-EDIT
+ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+EDIT PRODUCT
 ===================================================== */
 
 function editProduct(id){
 
-    const products =
-        JSON.parse(
-            localStorage.getItem(
-                "products"
-            ) || "[]"
-        );
+    const products=
+        getProducts();
 
-
-    const product =
+    const product=
         products.find(
-            p =>
-            p.id === id
+            p=>
+            String(p.id)===
+            String(id)
         );
 
-
-    if(!product){
-
-        alert(
-            "Produk tidak ditemukan."
-        );
-
-        return;
-
-    }
+    if(!product)return;
 
 
     document
     .getElementById(
         "productName"
     )
-    .value =
+    .value=
         product.name;
-
 
     document
     .getElementById(
         "productPrice"
     )
-    .value =
+    .value=
         product.price;
-
 
     document
     .getElementById(
         "productStock"
     )
-    .value =
+    .value=
         product.stock;
-
 
     document
     .getElementById(
         "productDesc"
     )
-    .value =
+    .value=
         product.desc;
 
 
-    editingId =
-        id;
+    editingId=
+        product.id;
 
 
     document
@@ -2185,7 +1822,7 @@ function editProduct(id){
     .getElementById(
         "formTitle"
     )
-    .textContent =
+    .textContent=
         "✏️ Edit Produk";
 
 
@@ -2201,114 +1838,85 @@ function editProduct(id){
 
 
 /* =====================================================
-HAPUS
+CANCEL
 ===================================================== */
 
-async function deleteProduct(id){
+function cancelEdit(){
 
-    const yakin =
-        confirm(
-            "Yakin ingin menghapus produk ini?"
-        );
-
-
-    if(!yakin){
-
-        return;
-
-    }
-
-
-    let products =
-        JSON.parse(
-            localStorage.getItem(
-                "products"
-            ) || "[]"
-        );
-
-
-    const product =
-        products.find(
-            p =>
-            p.id === id
-        );
-
-
-    if(!product){
-
-        return;
-
-    }
-
-
-    try{
-
-        if(
-            product.imageId
-        ){
-
-            await removeFile(
-                product.imageId
-            );
-
-        }
-
-
-        if(
-            product.videoId
-        ){
-
-            await removeFile(
-                product.videoId
-            );
-
-        }
-
-
-        products =
-            products.filter(
-                p =>
-                p.id !== id
-            );
-
-
-        localStorage.setItem(
-            "products",
-            JSON.stringify(
-                products
-            )
-        );
-
-
-        await renderProducts();
-
-
-        alert(
-            "Produk berhasil dihapus."
-        );
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        alert(
-            "Gagal menghapus produk."
-        );
-
-    }
+    resetForm();
 
 }
 
 
 /* =====================================================
-STATUS PESANAN
+DELETE
 ===================================================== */
 
-const statuses = [
+function deleteProduct(id){
+
+    if(
+        !confirm(
+            "Yakin ingin menghapus produk ini?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    let products=
+        getProducts();
+
+
+    const product=
+        products.find(
+            p=>
+            String(p.id)===
+            String(id)
+        );
+
+
+    if(
+        product &&
+        product.videoId
+    ){
+
+        deleteVideo(
+            product.videoId
+        );
+
+    }
+
+
+    products=
+        products.filter(
+            p=>
+            String(p.id)!==
+            String(id)
+        );
+
+
+    saveProducts(
+        products
+    );
+
+
+    renderProducts();
+
+
+    alert(
+        "Produk berhasil dihapus."
+    );
+
+}
+
+
+/* =====================================================
+STATUS
+===================================================== */
+
+const statuses=[
 
     "Belum Dibayar",
 
@@ -2321,54 +1929,25 @@ const statuses = [
 ];
 
 
-/* =====================================================
-STATUS CLASS
-===================================================== */
-
 function statusClass(status){
 
-    if(
-        status ===
-        "Sudah Dibayar"
-    ){
-
+    if(status==="Sudah Dibayar")
         return "status-paid";
 
-    }
-
-
-    if(
-        status ===
-        "Sedang Dikemas"
-    ){
-
+    if(status==="Sedang Dikemas")
         return "status-packing";
 
-    }
-
-
-    if(
-        status ===
-        "Sudah Dikirim"
-    ){
-
+    if(status==="Sudah Dikirim")
         return "status-shipped";
-
-    }
-
 
     return "status-unpaid";
 
 }
 
 
-/* =====================================================
-STATUS NUMBER
-===================================================== */
-
 function statusNumber(status){
 
-    const list = {
+    const map={
 
         "Belum Dibayar":1,
 
@@ -2380,97 +1959,7 @@ function statusNumber(status){
 
     };
 
-
-    return list[status] || 1;
-
-}
-
-
-/* =====================================================
-STEP
-===================================================== */
-
-function stepClass(
-    current,
-    step
-){
-
-    if(
-        step < current
-    ){
-
-        return "done";
-
-    }
-
-
-    if(
-        step === current
-    ){
-
-        return "active";
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =====================================================
-LINE
-===================================================== */
-
-function lineClass(
-    current,
-    step
-){
-
-    return current >= step
-        ? "done"
-        : "";
-
-}
-
-
-/* =====================================================
-ICON
-===================================================== */
-
-function getIcon(status){
-
-    if(
-        status ===
-        "Sudah Dibayar"
-    ){
-
-        return "✅";
-
-    }
-
-
-    if(
-        status ===
-        "Sedang Dikemas"
-    ){
-
-        return "📦";
-
-    }
-
-
-    if(
-        status ===
-        "Sudah Dikirim"
-    ){
-
-        return "🚚";
-
-    }
-
-
-    return "💰";
+    return map[status] || 1;
 
 }
 
@@ -2481,32 +1970,24 @@ RENDER ORDERS
 
 function renderOrders(){
 
-    const container =
-        document
-        .getElementById(
+    const container=
+        document.getElementById(
             "orderList"
         );
 
-
-    const orders =
-        JSON.parse(
-            localStorage.getItem(
-                "orders"
-            ) || "[]"
-        );
+    const orders=
+        getOrders();
 
 
-    if(
-        orders.length === 0
-    ){
+    if(orders.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
-            <div class="empty">
+        <div class="empty">
 
-                📦 Belum ada pesanan dari customer.
+            📦 Belum ada pesanan.
 
-            </div>
+        </div>
 
         `;
 
@@ -2515,104 +1996,123 @@ function renderOrders(){
     }
 
 
-    container.innerHTML =
+    container.innerHTML=
 
     orders
     .slice()
     .reverse()
     .map(
-        order => {
+        order=>{
 
-            const current =
+            const current=
                 statusNumber(
                     order.status
                 );
 
-
-            return `
+            return`
 
             <div class="order">
 
                 <h3>
-                    📦 ${safe(
+
+                    📦
+                    ${escapeHTML(
                         order.productName
                     )}
+
                 </h3>
 
 
                 <p>
+
                     <b>Customer:</b>
-                    ${safe(
+
+                    ${escapeHTML(
                         order.customer
                     )}
+
                 </p>
 
 
                 <p>
+
+                    <b>Username:</b>
+
+                    ${escapeHTML(
+                        order.username
+                    )}
+
+                </p>
+
+
+                <p>
+
                     <b>Jumlah:</b>
-                    ${order.quantity || 1}
+
+                    ${order.quantity}
+
                 </p>
 
 
                 <p>
+
                     <b>Harga:</b>
-                    ${rupiah(
-                        order.price
-                    )}
+
+                    ${rupiah(order.price)}
+
                 </p>
 
 
                 <p>
+
                     <b>Total:</b>
-                    ${rupiah(
-                        order.total ||
-                        order.price
-                    )}
+
+                    ${rupiah(order.total)}
+
                 </p>
 
 
                 <p>
+
                     <b>Pembayaran:</b>
-                    ${safe(
-                        order.payment ||
-                        "-"
+
+                    ${escapeHTML(
+                        order.payment
                     )}
+
                 </p>
 
 
                 <p>
+
                     <b>Tanggal:</b>
-                    ${safe(
-                        order.date ||
-                        "-"
+
+                    ${escapeHTML(
+                        order.date
                     )}
+
                 </p>
 
 
-                <p style="margin-top:12px">
+                <p>
 
                     <b>Status:</b>
 
-                    <span
-                        class="
+                    <span class="
                         status
                         ${statusClass(
                             order.status
                         )}
-                        ">
+                    ">
 
-                        ${getIcon(
-                            order.status
-                        )}
-
-                        ${safe(
-                            order.status
-                        )}
+                        ${order.status}
 
                     </span>
 
                 </p>
 
+
+                <!-- TRACKING -->
 
                 <div class="tracking">
 
@@ -2722,49 +2222,53 @@ function renderOrders(){
 
                     </div>
 
-
                 </div>
 
 
                 <label>
+
                     <b>
-                        Ubah Status Pesanan:
+                        Ubah Status Pesanan
                     </b>
+
                 </label>
 
 
                 <select
                     onchange="
-                        changeStatus(
-                            ${order.id},
-                            this.value
-                        )
+                    changeStatus(
+                        '${order.id}',
+                        this.value
+                    )
                     ">
 
-                    ${statuses.map(
-                        status => `
+                    ${
+                        statuses
+                        .map(
+                            status=>`
 
-                        <option
-                            value="${status}"
-                            ${
-                                order.status ===
-                                status
-                                ?
-                                "selected"
-                                :
-                                ""
-                            }
-                        >
+                            <option
+                                value="${status}"
+                                ${
+                                    order.status===
+                                    status
+                                    ?
+                                    "selected"
+                                    :
+                                    ""
+                                }
+                            >
 
-                            ${status}
+                                ${status}
 
-                        </option>
+                            </option>
 
-                    `
-                    ).join("")}
+                            `
+                        )
+                        .join("")
+                    }
 
                 </select>
-
 
             </div>
 
@@ -2777,7 +2281,41 @@ function renderOrders(){
 
 
 /* =====================================================
-UBAH STATUS
+STEP
+===================================================== */
+
+function stepClass(
+    current,
+    step
+){
+
+    if(step<current)
+        return "done";
+
+    if(step===current)
+        return "active";
+
+    return "";
+
+}
+
+
+function lineClass(
+    current,
+    step
+){
+
+    return current>=step
+        ?
+        "done"
+        :
+        "";
+
+}
+
+
+/* =====================================================
+CHANGE STATUS
 ===================================================== */
 
 function changeStatus(
@@ -2785,37 +2323,27 @@ function changeStatus(
     status
 ){
 
-    let orders =
-        JSON.parse(
-            localStorage.getItem(
-                "orders"
-            ) || "[]"
-        );
+    const orders=
+        getOrders();
 
 
-    const order =
+    const order=
         orders.find(
-            o =>
-            o.id === id
+            o=>
+            String(o.id)===
+            String(id)
         );
 
 
-    if(!order){
-
-        return;
-
-    }
+    if(!order)return;
 
 
-    order.status =
+    order.status=
         status;
 
 
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(
-            orders
-        )
+    saveOrders(
+        orders
     );
 
 
@@ -2823,7 +2351,7 @@ function changeStatus(
 
 
     alert(
-        "Status pesanan berhasil diubah menjadi:\n\n" +
+        "Status berhasil diubah menjadi:\n\n"+
         status
     );
 
@@ -2844,50 +2372,40 @@ function logout(){
         "loggedRole"
     );
 
+    localStorage.removeItem(
+        "loggedName"
+    );
 
-    location.href =
+    location.href=
         "index.html";
 
 }
 
 
 /* =====================================================
-START
+LOAD
 ===================================================== */
 
-async function start(){
+renderProducts();
 
-    try{
+renderOrders();
 
-        await openDatabase();
 
-        await renderProducts();
+/*
+Admin otomatis mengecek pesanan
+setiap 2 detik.
+*/
+
+setInterval(
+    function(){
 
         renderOrders();
 
-        console.log(
-            "GadgetStore Admin siap."
-        );
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        alert(
-            "Browser tidak mendukung IndexedDB atau terjadi kesalahan database."
-        );
-
-    }
-
-}
-
-
-start();
+    },
+    2000
+);
 
 </script>
 
 </body>
-    </html>
+</html>

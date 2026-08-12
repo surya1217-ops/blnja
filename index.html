@@ -141,9 +141,22 @@ button:hover,.btn:hover{
 }
 
 /* PRODUK */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .section-title{
-    margin-bottom:18px;
     color:#075da8;
+}
+
+.search-box {
+    width: 250px;
+    margin: 0;
 }
 
 .products{
@@ -178,6 +191,14 @@ button:hover,.btn:hover{
 
 .product h3{
     margin-bottom:8px;
+}
+
+.stock-tag {
+    font-size: 12px;
+    padding: 3px 8px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    color: #475569;
 }
 
 .price{
@@ -433,6 +454,7 @@ footer{
     .product-body{ padding:12px; }
     .action-buttons { flex-direction: column; }
     .action-buttons button { width: 100%; }
+    .search-box { width: 100%; }
 }
 </style>
 </head>
@@ -492,7 +514,10 @@ footer{
 
 <!-- KATALOG -->
 <div class="card">
-    <h2 class="section-title">📱 Katalog Produk</h2>
+    <div class="section-header">
+        <h2 class="section-title">📱 Katalog Produk</h2>
+        <input type="text" id="searchProduct" class="search-box" placeholder="🔍 Cari produk..." oninput="renderProducts()">
+    </div>
     <div id="products" class="products"></div>
 </div>
 
@@ -614,6 +639,7 @@ const defaultProducts = [
         id: 1,
         name: "Smartphone Premium",
         price: 12000000,
+        stock: 10,
         desc: "Layar AMOLED 120Hz, RAM 12GB, kamera 108MP dan baterai 5000mAh.",
         image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800",
         video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
@@ -622,6 +648,7 @@ const defaultProducts = [
         id: 2,
         name: "Laptop Ultra",
         price: 15500000,
+        stock: 5,
         desc: "Laptop performa tinggi dengan RAM 16GB, SSD 1TB dan layar Full HD.",
         image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800",
         video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
@@ -722,6 +749,14 @@ function addToCart(id, quiet = false) {
     let cart = getCart();
     const existing = cart.find(item => item.productId === id);
 
+    const currentQty = existing ? existing.qty : 0;
+    const maxStock = product.stock !== undefined ? product.stock : 999;
+
+    if (currentQty + 1 > maxStock) {
+        alert("Maaf, stok barang tidak mencukupi!");
+        return false;
+    }
+
     if (existing) {
         existing.qty++;
     } else {
@@ -740,11 +775,14 @@ function addToCart(id, quiet = false) {
     if (!quiet) {
         alert(`${product.name} berhasil ditambahkan ke keranjang!`);
     }
+    return true;
 }
 
 function buyDirect(id) {
-    addToCart(id, true);
-    openCheckout();
+    const success = addToCart(id, true);
+    if (success !== false) {
+        openCheckout();
+    }
 }
 
 function updateCartCount() {
@@ -757,17 +795,25 @@ function updateCartCount() {
 function renderProducts() {
     const container = document.getElementById("products");
     const products = JSON.parse(localStorage.getItem("products") || "[]");
+    const search = document.getElementById("searchProduct") ? document.getElementById("searchProduct").value.toLowerCase() : "";
 
-    if (products.length === 0) {
-        container.innerHTML = `<div class="empty">Belum ada produk.</div>`;
+    const filtered = products.filter(p => p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search));
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="empty" style="grid-column: 1/-1;">Belum ada produk yang cocok.</div>`;
         return;
     }
 
-    container.innerHTML = products.map(product => `
+    container.innerHTML = filtered.map(product => {
+        const stockText = product.stock !== undefined ? `Stok: ${product.stock}` : "Tersedia";
+        const isOutOfStock = product.stock !== undefined && product.stock <= 0;
+
+        return `
         <div class="product">
             <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/600x400?text=GadgetStore'">
             <div class="product-body">
                 <h3>${product.name}</h3>
+                <span class="stock-tag">${stockText}</span>
                 <div class="price">${rupiah(product.price)}</div>
                 <p class="desc">${product.desc}</p>
                 <video controls>
@@ -775,16 +821,16 @@ function renderProducts() {
                     Browser tidak mendukung video.
                 </video>
                 <div class="action-buttons">
-                    <button class="buy" style="flex:1" onclick="addToCart(${product.id})">
+                    <button class="buy" style="flex:1" onclick="addToCart(${product.id})" ${isOutOfStock ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
                         🛒 +Keranjang
                     </button>
-                    <button class="buy-direct" style="flex:1" onclick="buyDirect(${product.id})">
+                    <button class="buy-direct" style="flex:1" onclick="buyDirect(${product.id})" ${isOutOfStock ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
                         ⚡ Beli Langsung
                     </button>
                 </div>
             </div>
         </div>
-    `).join("");
+    `}).join("");
 }
 
 /* MODALS */
@@ -831,6 +877,14 @@ function changeQty(id, change) {
     let cart = getCart();
     const item = cart.find(i => i.productId === id);
     if (!item) return;
+
+    const products = JSON.parse(localStorage.getItem("products") || "[]");
+    const product = products.find(p => p.id === id);
+
+    if (change > 0 && product && product.stock !== undefined && item.qty + change > product.stock) {
+        alert("Stok produk tidak mencukupi!");
+        return;
+    }
 
     item.qty += change;
     if (item.qty <= 0) {
@@ -891,9 +945,16 @@ function processCheckout() {
 
     const user = localStorage.getItem("loggedUser");
     let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+    let products = JSON.parse(localStorage.getItem("products") || "[]");
     const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
+    // Kurangi stok barang
     cart.forEach(item => {
+        let product = products.find(p => p.id === item.productId);
+        if (product && product.stock !== undefined) {
+            product.stock = Math.max(0, product.stock - item.qty);
+        }
+
         orders.push({
             id: Date.now() + Math.floor(Math.random() * 10000),
             customer: user,
@@ -908,10 +969,13 @@ function processCheckout() {
         });
     });
 
+    localStorage.setItem("products", JSON.stringify(products));
     localStorage.setItem("orders", JSON.stringify(orders));
     saveCart([]); // Mengosongkan keranjang setelah beli
+    
     closeCheckout();
     updateCartCount();
+    renderProducts();
     renderOrders();
 
     alert(`✅ PEMBAYARAN BERHASIL!\n\nMetode: ${selected.value}\nTotal: ${rupiah(total)}\n\nStatus: Sudah Dibayar`);

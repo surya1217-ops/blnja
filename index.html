@@ -103,6 +103,7 @@ button:hover,.btn:hover{
     transform:translateY(-2px);
 }
 
+.admin-btn{background:#152238}
 .logout{background:#ef4444}
 .logout:hover{background:#dc2626}
 
@@ -117,9 +118,6 @@ button:hover,.btn:hover{
 
 .danger{background:#ef4444}
 .close{background:#ef4444}
-
-.reset-btn{background:#f59e0b}
-.reset-btn:hover{background:#d97706}
 
 .nav{
     display:flex;
@@ -219,6 +217,68 @@ video{
     font-size:13px;
     font-weight:bold;
     margin-top:8px;
+}
+
+/* TRACKING */
+.tracking{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:18px;
+}
+
+.step{
+    text-align:center;
+    min-width:70px;
+    color:#94a3b8;
+}
+
+.circle{
+    width:42px;
+    height:42px;
+    margin:auto;
+    border-radius:50%;
+    background:#e2e8f0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.step.active{
+    color:#0878d1;
+    font-weight:bold;
+}
+
+.step.active .circle{
+    background:#0878d1;
+    color:white;
+}
+
+.step.done{
+    color:#08a66a;
+    font-weight:bold;
+}
+
+.step.done .circle{
+    background:#08a66a;
+    color:white;
+}
+
+.line{
+    height:4px;
+    flex:1;
+    max-width:80px;
+    background:#e2e8f0;
+}
+
+.line-done{
+    background:#08a66a;
+}
+
+.step small{
+    display:block;
+    margin-top:7px;
+    font-size:10px;
 }
 
 /* CART */
@@ -327,6 +387,10 @@ video{
     border-left:5px solid #0878d1;
 }
 
+.payment-detail strong{
+    color:#075da8;
+}
+
 .checkout-total{
     background:#e8f6ff;
     padding:15px;
@@ -334,6 +398,15 @@ video{
     margin:15px 0;
     font-size:18px;
     font-weight:bold;
+}
+
+.confirm-box{
+    background:#ecfdf5;
+    border:1px solid #a7f3d0;
+    padding:15px;
+    border-radius:12px;
+    margin-top:15px;
+    color:#047857;
 }
 
 .empty{
@@ -375,15 +448,16 @@ footer{
         <label>Login sebagai</label>
         <select id="role">
             <option value="customer">Customer</option>
+            <option value="admin">Administrator</option>
         </select>
 
         <label>Username</label>
-        <input type="text" id="username" placeholder="Masukkan username (Bebas)" value="user1">
+        <input type="text" id="username" placeholder="Masukkan username">
 
         <label>Password</label>
-        <input type="password" id="password" placeholder="Masukkan password" value="12345">
+        <input type="password" id="password" placeholder="Masukkan password">
 
-        <button onclick="login()" style="width:100%">Login Sekarang</button>
+        <button onclick="login()" style="width:100%">Login</button>
         <p id="loginMessage" style="color:#ef4444;margin-top:15px"></p>
     </div>
 </div>
@@ -408,7 +482,9 @@ footer{
             <button class="cart-btn" onclick="openCart()">
                 🛒 Keranjang (<span id="cartCount">0</span>)
             </button>
-            <button class="reset-btn" onclick="clearDataSystem()">🔄 Reset System Data</button>
+            <button class="admin-btn hidden" id="adminPanelBtn" onclick="location.href='admin.html'">
+                ⚙️ Admin
+            </button>
             <button class="logout" onclick="logout()">Keluar</button>
         </div>
     </div>
@@ -467,7 +543,8 @@ footer{
             </label>
             <div id="detailBNI" class="payment-detail">
                 <strong>Bank BNI</strong><br><br>
-                Nomor Rekening:<br><strong>1234567890</strong>
+                Nomor Rekening:<br><strong>1234567890</strong><br><br>
+                Atas Nama:<br><strong>GadgetStore Pro</strong>
             </div>
         </div>
 
@@ -479,7 +556,47 @@ footer{
             </label>
             <div id="detailBCA" class="payment-detail">
                 <strong>Bank BCA</strong><br><br>
-                Nomor Rekening:<br><strong>9876543210</strong>
+                Nomor Rekening:<br><strong>9876543210</strong><br><br>
+                Atas Nama:<br><strong>GadgetStore Pro</strong>
+            </div>
+        </div>
+
+        <!-- DANA -->
+        <div class="payment">
+            <label>
+                <input type="radio" name="payment" value="DANA" onchange="showPaymentDetail('DANA')">
+                💙 DANA
+            </label>
+            <div id="detailDANA" class="payment-detail">
+                <strong>DANA</strong><br><br>
+                Nomor DANA:<br><strong>081234567890</strong><br><br>
+                Nama:<br><strong>GadgetStore Pro</strong>
+            </div>
+        </div>
+
+        <!-- GOPAY -->
+        <div class="payment">
+            <label>
+                <input type="radio" name="payment" value="GoPay" onchange="showPaymentDetail('GoPay')">
+                🟢 GoPay
+            </label>
+            <div id="detailGoPay" class="payment-detail">
+                <strong>GoPay</strong><br><br>
+                Nomor GoPay:<br><strong>081234567890</strong><br><br>
+                Nama:<br><strong>GadgetStore Pro</strong>
+            </div>
+        </div>
+
+        <!-- OVO -->
+        <div class="payment">
+            <label>
+                <input type="radio" name="payment" value="OVO" onchange="showPaymentDetail('OVO')">
+                🟣 OVO
+            </label>
+            <div id="detailOVO" class="payment-detail">
+                <strong>OVO</strong><br><br>
+                Nomor OVO:<br><strong>081234567890</strong><br><br>
+                Nama:<br><strong>GadgetStore Pro</strong>
             </div>
         </div>
 
@@ -511,13 +628,12 @@ const defaultProducts = [
     }
 ];
 
-function initSystem() {
-    if (!localStorage.getItem("products")) {
-        localStorage.setItem("products", JSON.stringify(defaultProducts));
-    }
-    if (!localStorage.getItem("orders")) {
-        localStorage.setItem("orders", JSON.stringify([]));
-    }
+/* INITIALIZATION */
+if (!localStorage.getItem("products")) {
+    localStorage.setItem("products", JSON.stringify(defaultProducts));
+}
+if (!localStorage.getItem("orders")) {
+    localStorage.setItem("orders", JSON.stringify([]));
 }
 
 function rupiah(number) {
@@ -528,13 +644,40 @@ function rupiah(number) {
     }).format(number);
 }
 
+/* LOGIN SYSTEM */
 function login() {
+    const role = document.getElementById("role").value;
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
     const msg = document.getElementById("loginMessage");
+    msg.textContent = "";
 
     if (!username || !password) {
         msg.textContent = "Username dan password wajib diisi!";
+        return;
+    }
+
+    if (role === "admin") {
+        if (username === "admin" && password === "12345") {
+            localStorage.setItem("loggedUser", "admin");
+            localStorage.setItem("loggedRole", "admin");
+            alert("Login admin berhasil!");
+            showApp();
+        } else {
+            msg.textContent = "Username atau password admin salah!";
+        }
+        return;
+    }
+
+    let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+    let customer = customers.find(c => c.username === username);
+
+    if (!customer) {
+        customer = { username, password };
+        customers.push(customer);
+        localStorage.setItem("customers", JSON.stringify(customers));
+    } else if (customer.password !== password) {
+        msg.textContent = "Password customer salah!";
         return;
     }
 
@@ -544,7 +687,6 @@ function login() {
 }
 
 function showApp() {
-    initSystem();
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("app").classList.remove("hidden");
     document.getElementById("welcome").textContent = localStorage.getItem("loggedUser");
@@ -560,14 +702,9 @@ function logout() {
     location.reload();
 }
 
-function clearDataSystem() {
-    localStorage.clear();
-    alert("Data telah di-reset! Silakan login kembali.");
-    location.reload();
-}
-
+/* CART & BUY LOGIC */
 function getCartKey() {
-    return "cart_" + localStorage.getItem("loggedUser");
+    return "cart_" + (localStorage.getItem("loggedUser") || "guest");
 }
 
 function getCart() {
@@ -578,35 +715,32 @@ function saveCart(cart) {
     localStorage.setItem(getCartKey(), JSON.stringify(cart));
 }
 
+/* FIX DILAKUKAN DI SINI: Mengubah p.id === id menjadi p.id == id agar tipe data teks/angka tetap cocok */
 function addToCart(id, quiet = false) {
-    try {
-        const products = JSON.parse(localStorage.getItem("products") || "[]");
-        const product = products.find(p => p.id === id);
-        if (!product) return;
+    const products = JSON.parse(localStorage.getItem("products") || "[]");
+    const product = products.find(p => p.id == id);
+    if (!product) return;
 
-        let cart = getCart();
-        const existing = cart.find(item => item.productId === id);
+    let cart = getCart();
+    const existing = cart.find(item => item.productId == id);
 
-        if (existing) {
-            existing.qty++;
-        } else {
-            cart.push({
-                productId: product.id,
-                name: product.name,
-                price: product.price,
-                image: product.image,
-                qty: 1
-            });
-        }
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            qty: 1
+        });
+    }
 
-        saveCart(cart);
-        updateCartCount();
+    saveCart(cart);
+    updateCartCount();
 
-        if (!quiet) {
-            alert(`${product.name} berhasil ditambahkan ke keranjang!`);
-        }
-    } catch(err) {
-        alert("Terjadi kesalahan: " + err.message);
+    if (!quiet) {
+        alert(`${product.name} berhasil ditambahkan ke keranjang!`);
     }
 }
 
@@ -621,6 +755,7 @@ function updateCartCount() {
     document.getElementById("cartCount").textContent = count;
 }
 
+/* RENDER PRODUCTS */
 function renderProducts() {
     const container = document.getElementById("products");
     const products = JSON.parse(localStorage.getItem("products") || "[]");
@@ -637,6 +772,10 @@ function renderProducts() {
                 <h3>${product.name}</h3>
                 <div class="price">${rupiah(product.price)}</div>
                 <p class="desc">${product.desc}</p>
+                <video controls>
+                    <source src="${product.video}" type="video/mp4">
+                    Browser tidak mendukung video.
+                </video>
                 <div class="action-buttons">
                     <button class="buy" style="flex:1" onclick="addToCart(${product.id})">
                         🛒 +Keranjang
@@ -650,6 +789,7 @@ function renderProducts() {
     `).join("");
 }
 
+/* MODALS */
 function openCart() {
     renderCart();
     document.getElementById("cartModal").classList.remove("hidden");
@@ -691,12 +831,12 @@ function renderCart() {
 
 function changeQty(id, change) {
     let cart = getCart();
-    const item = cart.find(i => i.productId === id);
+    const item = cart.find(i => i.productId == id);
     if (!item) return;
 
     item.qty += change;
     if (item.qty <= 0) {
-        cart = cart.filter(i => i.productId !== id);
+        cart = cart.filter(i => i.productId != id);
     }
 
     saveCart(cart);
@@ -705,12 +845,13 @@ function changeQty(id, change) {
 }
 
 function removeFromCart(id) {
-    let cart = getCart().filter(item => item.productId !== id);
+    let cart = getCart().filter(item => item.productId != id);
     saveCart(cart);
     renderCart();
     updateCartCount();
 }
 
+/* CHECKOUT & ORDER HANDLING */
 function openCheckout() {
     const cart = getCart();
     if (cart.length === 0) {
@@ -730,7 +871,7 @@ function closeCheckout() {
 }
 
 function showPaymentDetail(method) {
-    const details = ["BNI", "BCA"];
+    const details = ["BNI", "BCA", "DANA", "GoPay", "OVO"];
     details.forEach(item => {
         document.getElementById("detail" + item).style.display = "none";
     });
@@ -758,6 +899,7 @@ function processCheckout() {
         orders.push({
             id: Date.now() + Math.floor(Math.random() * 10000),
             customer: user,
+            productId: item.productId,
             productName: item.name,
             price: item.price,
             quantity: item.qty,
@@ -769,14 +911,15 @@ function processCheckout() {
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
-    saveCart([]);
+    saveCart([]); // Mengosongkan keranjang setelah beli
     closeCheckout();
     updateCartCount();
     renderOrders();
 
-    alert(`✅ PEMBAYARAN BERHASIL!\n\nMetode: ${selected.value}\nTotal: ${rupiah(total)}`);
+    alert(`✅ PEMBAYARAN BERHASIL!\n\nMetode: ${selected.value}\nTotal: ${rupiah(total)}\n\nStatus: Sudah Dibayar`);
 }
 
+/* RENDER ORDERS */
 function renderOrders() {
     const container = document.getElementById("orders");
     const user = localStorage.getItem("loggedUser");
@@ -791,26 +934,96 @@ function renderOrders() {
     container.innerHTML = myOrders.slice().reverse().map(order => `
         <div class="order">
             <h3>📦 ${order.productName}</h3>
-            <p>Jumlah: <b>${order.quantity}</b></p>
-            <p>Total: <b>${rupiah(order.total)}</b></p>
-            <p>Pembayaran: <b>${order.payment}</b></p>
+            <p>Jumlah: <b>${order.quantity || 1}</b></p>
+            <p>Total: <b>${rupiah(order.total || order.price)}</b></p>
+            <p>Pembayaran: <b>${order.payment || "-"}</b></p>
             <p>Tanggal: ${order.date}</p>
-            <span class="status">✅ ${order.status}</span>
+
+            <div style="margin-top:18px;padding:18px;background:#f8fbff;border-radius:15px;">
+                <h4 style="color:#075da8;margin-bottom:15px;">🚚 Tracking Pesanan</h4>
+                
+                <div class="tracking">
+                    <div class="step ${getStepClass(order.status, 1)}">
+                        <div class="circle">💰</div>
+                        <small>Belum<br>Dibayar</small>
+                    </div>
+                    <div class="line ${getLineClass(order.status, 2)}"></div>
+                    <div class="step ${getStepClass(order.status, 2)}">
+                        <div class="circle">✅</div>
+                        <small>Sudah<br>Dibayar</small>
+                    </div>
+                    <div class="line ${getLineClass(order.status, 3)}"></div>
+                    <div class="step ${getStepClass(order.status, 3)}">
+                        <div class="circle">📦</div>
+                        <small>Sedang<br>Dikemas</small>
+                    </div>
+                    <div class="line ${getLineClass(order.status, 4)}"></div>
+                    <div class="step ${getStepClass(order.status, 4)}">
+                        <div class="circle">🚚</div>
+                        <small>Sudah<br>Dikirim</small>
+                    </div>
+                </div>
+
+                <div style="text-align:center;margin-top:20px;">
+                    <span class="status">${getStatusIcon(order.status)} ${order.status}</span>
+                </div>
+
+                <p style="text-align:center;margin-top:12px;color:#64748b;">
+                    ${getStatusMessage(order.status)}
+                </p>
+
+                ${order.status === "Sudah Dibayar" ? `
+                    <div class="confirm-box">
+                        ✅ Pembayaran berhasil dikonfirmasi.<br><br>
+                        Metode pembayaran: <b>${order.payment}</b>
+                    </div>
+                ` : ""}
+            </div>
         </div>
     `).join("");
 }
 
-/* SESSION CHECK AUTO RUN */
-window.onload = function() {
-    initSystem();
-    const loggedUser = localStorage.getItem("loggedUser");
-    if (loggedUser) {
-        showApp();
-    } else {
-        document.getElementById("loginPage").classList.remove("hidden");
-        document.getElementById("app").classList.add("hidden");
+function getStepClass(status, step) {
+    const statusNumber = { "Belum Dibayar": 1, "Sudah Dibayar": 2, "Sedang Dikemas": 3, "Sudah Dikirim": 4 };
+    const current = statusNumber[status] || 1;
+    if (step < current) return "done";
+    if (step === current) return "active";
+    return "";
+}
+
+function getLineClass(status, step) {
+    const statusNumber = { "Belum Dibayar": 1, "Sudah Dibayar": 2, "Sedang Dikemas": 3, "Sudah Dikirim": 4 };
+    const current = statusNumber[status] || 1;
+    return current >= step ? "line-done" : "";
+}
+
+function getStatusMessage(status) {
+    switch (status) {
+        case "Sudah Dibayar": return "💳 Pembayaran sudah dikonfirmasi.";
+        case "Sedang Dikemas": return "📦 Pesanan sedang dikemas oleh penjual.";
+        case "Sudah Dikirim": return "🚚 Pesanan sudah dikirim dan sedang dalam perjalanan.";
+        default: return "💰 Pesanan menunggu pembayaran.";
     }
-};
+}
+
+function getStatusIcon(status) {
+    switch (status) {
+        case "Sudah Dibayar": return "✅";
+        case "Sedang Dikemas": return "📦";
+        case "Sudah Dikirim": return "🚚";
+        default: return "💰";
+    }
+}
+
+/* SESSION CHECK */
+const loggedUser = localStorage.getItem("loggedUser");
+
+if (loggedUser) {
+    showApp();
+} else {
+    document.getElementById("loginPage").classList.remove("hidden");
+    document.getElementById("app").classList.add("hidden");
+}
 </script>
 
 </body>
